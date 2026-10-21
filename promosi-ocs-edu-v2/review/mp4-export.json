@@ -1,0 +1,16 @@
+{
+  "sourceSHA256": "240a97cb0c325744662ba92c5048b1eded04877ae180b298fc79112224fe9ad7",
+  "fps": 60,
+  "width": 1080,
+  "height": 1920,
+  "duration": 35,
+  "total": 2100,
+  "format": "PNG",
+  "completed": 2100,
+  "elapsedSeconds": 316.67974530000004,
+  "videoCodec": "H.264 High (libx264)",
+  "bitrate": "CRF 18",
+  "audioCodec": "AAC",
+  "audioSampleRate": 48000,
+  "output": "C:\\Belajar_Pemograman\\Project\\motion\\promosi-ocs-edu-v2\\promosi-ocs-edu-v2.mp4"
+}

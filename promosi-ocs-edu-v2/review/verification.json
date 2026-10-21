@@ -1,0 +1,222 @@
+{
+  "status": "passed",
+  "info": {
+    "duration": 35,
+    "audioDuration": 35,
+    "fonts": [
+      true,
+      true
+    ],
+    "images": true,
+    "debug": "none"
+  },
+  "snapshots": 17,
+  "navigation": [
+    {
+      "time": 6.4,
+      "role": "teacher",
+      "labels": [
+        "Beranda",
+        "Akademik",
+        "E-Learning",
+        "Kesiswaan"
+      ],
+      "active": "Beranda",
+      "background": "rgb(255, 255, 255)",
+      "shadow": "none",
+      "filter": "none"
+    },
+    {
+      "time": 16.8,
+      "role": "student",
+      "labels": [
+        "Beranda",
+        "Akademik",
+        "LMS",
+        "Tagihan"
+      ],
+      "active": "LMS",
+      "background": "rgb(255, 255, 255)",
+      "shadow": "none",
+      "filter": "none"
+    },
+    {
+      "time": 24.3,
+      "role": "parent",
+      "labels": [
+        "Beranda",
+        "Anak Saya",
+        "Tagihan"
+      ],
+      "active": "Beranda",
+      "background": "rgb(255, 255, 255)",
+      "shadow": "none",
+      "filter": "none"
+    }
+  ],
+  "ending": [
+    {
+      "id": "echo-teacher",
+      "bottom": 1639.99951171875,
+      "left": 80.95645904541016,
+      "right": 586.7034378051758
+    },
+    {
+      "id": "echo-student",
+      "bottom": 1640,
+      "left": 335.3999938964844,
+      "right": 744.5999755859375
+    },
+    {
+      "id": "device",
+      "bottom": 1640.000244140625,
+      "left": 512.2987670898438,
+      "right": 987.700927734375
+    }
+  ],
+  "bounds": [
+    {
+      "id": "h-open",
+      "left": 76,
+      "right": 821.40625,
+      "top": 247.11700439453125,
+      "bottom": 482.99200439453125
+    },
+    {
+      "id": "h-open",
+      "left": 76,
+      "right": 821.40625,
+      "top": 247,
+      "bottom": 482.875
+    },
+    {
+      "id": "h-teacher",
+      "left": 76,
+      "right": 565.34375,
+      "top": 198,
+      "bottom": 407.546875
+    },
+    {
+      "id": "h-teacher",
+      "left": 76,
+      "right": 565.34375,
+      "top": 198,
+      "bottom": 407.546875
+    },
+    {
+      "id": "h-teacher",
+      "left": 76,
+      "right": 565.34375,
+      "top": 198,
+      "bottom": 407.546875
+    },
+    {
+      "id": "h-learn",
+      "left": 76,
+      "right": 633.640625,
+      "top": 188.0240020751953,
+      "bottom": 397.57086181640625
+    },
+    {
+      "id": "h-learn",
+      "left": 76,
+      "right": 633.640625,
+      "top": 183,
+      "bottom": 392.546875
+    },
+    {
+      "id": "h-learn",
+      "left": 76,
+      "right": 633.640625,
+      "top": 183,
+      "bottom": 392.546875
+    },
+    {
+      "id": "h-learn",
+      "left": 76,
+      "right": 633.640625,
+      "top": 183,
+      "bottom": 392.546875
+    },
+    {
+      "id": "h-progress",
+      "left": 274.703125,
+      "right": 805.28125,
+      "top": 213,
+      "bottom": 422.546875
+    },
+    {
+      "id": "h-parent",
+      "left": 76,
+      "right": 629.984375,
+      "top": 184,
+      "bottom": 380.953125
+    },
+    {
+      "id": "h-parent",
+      "left": 76,
+      "right": 629.984375,
+      "top": 184,
+      "bottom": 380.953125
+    },
+    {
+      "id": "h-parent",
+      "left": 76,
+      "right": 629.984375,
+      "top": 184,
+      "bottom": 380.953125
+    },
+    {
+      "id": "h-parent",
+      "left": 76,
+      "right": 629.984375,
+      "top": 184,
+      "bottom": 380.953125
+    },
+    {
+      "id": "h-together",
+      "left": 179.046875,
+      "right": 900.953125,
+      "top": 223,
+      "bottom": 436.796875
+    }
+  ],
+  "interaction": {
+    "button": {
+      "x": 647.1409912109375,
+      "y": 1036.3853759765625,
+      "w": 263.61944580078125,
+      "h": 64.04541015625
+    },
+    "touch": {
+      "x": 815,
+      "y": 1070
+    }
+  },
+  "mobile": {
+    "x": 0,
+    "y": 75.33334350585938,
+    "w": 390,
+    "h": 693.333251953125,
+    "overflow": false
+  },
+  "playing": {
+    "t": 1.007,
+    "audio": 0.971051,
+    "paused": false,
+    "audioPaused": false
+  },
+  "loop": {
+    "t": 0.441,
+    "audio": 0.400437,
+    "paused": false
+  },
+  "deterministicSeek": {
+    "identicalDOM": true,
+    "maxDelta": 0,
+    "changedChannels": 0
+  },
+  "offline": true,
+  "autoplayGate": true,
+  "errors": []
+}

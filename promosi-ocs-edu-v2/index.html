@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="id">
+<!-- Made with Bang Motion by Bang Tutorial — https://github.com/bangtutorial/bang-motion — MIT.
+Adapted starter-opener architecture: fixed stage, continuous world, deterministic timeline,
+gesture-gated audio and hidden review controls. UI references captured locally, 21 Oct 2026. -->
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OCS EDU — Terhubung untuk tumbuh · V2</title>
+<style>
+@font-face{font-family:Jakarta;src:url(assets/jakarta-latin.woff2) format('woff2');font-weight:200 800;font-display:block}
+@font-face{font-family:Inter;src:url(assets/inter-latin.woff2) format('woff2');font-weight:100 900;font-display:block}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#17102b;color:#142035;font-family:Inter,sans-serif}
+#stage{position:absolute;left:50%;top:50%;width:1080px;height:1920px;overflow:hidden;background:#f4f1fc;isolation:isolate}
+#world{position:absolute;inset:0;perspective:1600px;transform-style:preserve-3d}
+.wash{position:absolute;width:1500px;height:1500px;border-radius:50%;filter:blur(90px);opacity:.55;pointer-events:none}
+#wash-a{left:-700px;top:550px;background:radial-gradient(circle,#c6b2fa,transparent 67%)}
+#wash-b{left:400px;top:-500px;background:radial-gradient(circle,#d0f9eb,transparent 65%)}
+#violet{position:absolute;inset:0;background:radial-gradient(ellipse at 85% 90%,#9769ed,transparent 65%),linear-gradient(150deg,#271255,#6025c9 65%,#8144de);opacity:0}
+#orbit{position:absolute;left:-270px;top:650px;width:1620px;height:1620px;border:2px solid #9877d82a;border-radius:50%;box-shadow:0 0 0 100px #9877d80b,0 0 0 260px #9877d80b;pointer-events:none}
+#brand-mini{position:absolute;left:72px;top:72px;display:flex;align-items:center;gap:17px;font-family:Jakarta,sans-serif;font-size:31px;font-weight:800;letter-spacing:-1px;z-index:12}
+#brand-mini img{width:57px;height:57px;object-fit:contain}
+.headline{position:absolute;left:76px;right:76px;top:205px;margin:0;font-family:Jakarta,sans-serif;font-size:88px;line-height:1.12;font-weight:750;letter-spacing:-4px;word-spacing:3px;opacity:0;z-index:9;transform-origin:left top}
+.headline em{font-style:normal;color:#6025c9}.headline.center{text-align:center}
+#h-open{font-size:99px;top:255px}#h-teacher{top:205px}#h-learn{top:190px}#h-progress{top:220px;color:white}#h-parent{font-size:83px;top:190px}#h-together{top:230px;text-align:center;font-size:90px}
+.desktop{position:absolute;width:1380px;height:1074px;left:-150px;top:650px;border-radius:29px;background:#fff;border:3px solid #d7cce8;box-shadow:0 65px 100px -35px #3c1a7055;overflow:hidden;transform-origin:center center}
+.chrome-bar{height:66px;display:flex;align-items:center;gap:10px;padding:0 25px;background:#fbfaff;border-bottom:1px solid #eee8f8}.chrome-bar i{width:12px;height:12px;background:#dacfe9;border-radius:50%}.chrome-bar span{font-size:19px;color:#797088;margin:auto;transform:translateX(-25px)}
+.desktop>img{display:block;width:100%;height:auto}
+#device{position:absolute;left:210px;top:430px;width:660px;height:1407px;border:3px solid #cec6e0;border-radius:50px;padding:10px;background:linear-gradient(130deg,#fff,#e0dbea 55%,#fff);box-shadow:0 54px 100px -35px #35205066;transform-origin:50% 0;z-index:3}
+#screen{position:relative;width:634px;height:1381px;border-radius:37px;overflow:hidden;background:#f8fafc}
+#page-content,.echo-content{position:absolute;left:0;right:0;top:0;height:1255px;overflow:hidden;background:#f8fafc}
+.pane{position:absolute;inset:0;overflow:hidden;will-change:transform}.pane>img{display:block;width:634px;height:auto}
+.mobile-nav{position:absolute;left:0;right:0;bottom:0;height:126px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:start;padding:12px 8px 18px;background:#fff;border-top:1.5px solid #e2e8f0;z-index:10;box-shadow:none;filter:none}
+.mobile-nav[data-role="parent"]{grid-template-columns:repeat(3,minmax(0,1fr))}
+.mobile-nav-item{display:flex;flex-direction:column;align-items:center;gap:5px;color:#64748b;font:500 20px/1.2 Inter,sans-serif;white-space:nowrap}
+.mobile-nav-icon{position:relative;display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;color:#94a3b8}
+.mobile-nav-icon svg{width:33px;height:33px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.mobile-nav-item.active{color:#6025c9;font-weight:650}.mobile-nav-item.active .mobile-nav-icon{background:#faf5ff;color:#6025c9}
+.mobile-nav-dot{position:absolute;right:5px;top:4px;width:9px;height:9px;border-radius:50%;background:#6025c9;border:1.5px solid #fff}
+.course-card-overlay{position:absolute;left:22px;right:22px;top:906px;bottom:0;background:#ffffff;border:1.5px solid #ece8f6;border-radius:24px;padding:18px 20px;box-shadow:0 8px 24px -6px rgba(45,20,80,.08);font-family:Inter,sans-serif;z-index:2;display:flex;flex-direction:column}
+.c-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.c-chap{font-size:14px;font-weight:750;color:#6025c9;letter-spacing:1px}
+.c-badge{font-size:13px;font-weight:650;color:#00875a;background:#e3fcef;padding:3px 10px;border-radius:20px}
+.c-title{font-size:20px;font-weight:750;color:#0f172a;margin-bottom:12px;letter-spacing:-.4px;line-height:1.2}
+.c-list{display:flex;flex-direction:column;gap:8px;flex:1;justify-content:space-between}
+.c-item{display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:12px;background:#f8fafc;border:1px solid #f1f5f9}
+.c-item.active{background:#faf8ff;border-color:#e4daf7}
+.c-icon{width:32px;height:32px;border-radius:9px;background:#eeebf8;color:#6025c9;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.c-item.done .c-icon{background:#e6fcf3;color:#00a775}
+.c-info{flex:1;min-width:0}
+.c-info strong{display:block;font-size:15px;font-weight:650;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c-info small{display:block;font-size:12px;color:#64748b;margin-top:1px}
+.c-tag{font-size:12px;font-weight:650;color:#00875a;background:#e3fcef;padding:3px 9px;border-radius:10px;flex-shrink:0}
+.c-tag.active{color:#6025c9;background:#f3eefc}
+#shade{position:absolute;inset:0;background:#25153d;opacity:0;pointer-events:none;z-index:8}
+.lift{position:absolute;left:118px;width:844px;border-radius:40px;background:white;box-shadow:0 50px 110px -38px #29144d66;font-family:Inter,sans-serif;z-index:5;opacity:0;transform-origin:0 0}
+#teacher-card{top:700px;padding:42px;border:3px solid #a7f3d0;background:#fafffd}
+.row{display:flex;align-items:center;gap:24px}.subject{font-size:36px;font-weight:750;margin:0 0 9px;letter-spacing:-1px}.secondary{font-size:27px;color:#64748b;line-height:1.45}
+.square{width:92px;height:92px;border-radius:26px;display:flex;align-items:center;justify-content:center;background:#155dfc;color:white;flex-shrink:0}
+.square svg{width:51px;height:51px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lesson{background:#009d71;color:#fff;border-radius:23px;width:96px;min-width:96px;text-align:center;padding:13px 0;font-size:20px;font-weight:700}.lesson b{display:block;font-size:43px;line-height:1.1}
+.pill{display:inline-flex;align-items:center;gap:10px;border-radius:30px;padding:12px 22px;font-size:25px;line-height:1.15;background:#ecfdf5;color:#007e5c;font-weight:650;margin-top:32px}.pill .dot{width:13px;height:13px;border-radius:50%;background:#10b981}.pill.pending{margin-top:13px;color:#be6a27;background:#fffbeb;font-size:23px}
+.rule{height:2px;background:#edf2f7;margin:30px 0}
+.tag{border:2px solid #e8edf3;background:#f8fafc;color:#65748b;border-radius:28px;padding:12px 20px;display:table;font-size:26px;margin:12px 0}.tag svg{width:26px;height:26px;vertical-align:-4px;fill:none;stroke:#94a3b8;stroke-width:1.8;margin-right:10px}
+.ui-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:17px 25px;border-radius:20px;background:#6025c9;color:white;font-size:27px;font-weight:650;border:0;font-family:Inter,sans-serif;box-shadow:0 3px 4px #0f172a0c}
+#teacher-card .ui-button{background:#009d71;margin-top:13px}.check{width:29px;height:29px;border:2px solid currentColor;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:21px}
+#learning-card{top:685px;padding:43px;border:2px solid #dfe5ee}
+.subject-pill{background:#eff6ff;padding:11px 20px;border-radius:25px;font-size:26px}.percent{margin-left:auto;color:#6025c9;font-size:28px;font-weight:650;font-variant-numeric:tabular-nums}
+#learning-card .subject{font-size:35px;line-height:1.35;margin:24px 0 19px}
+.progress-track{height:15px;background:#e2e8f0;border-radius:20px;overflow:hidden;margin:34px 0}.progress-fill{height:100%;width:75%;background:#6025c9;transform-origin:left;border-radius:20px}
+.learning-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:25px;color:#94a3b8;font-weight:650}
+#progress-card{top:835px;padding:42px;border:2px solid #e2e8f0}
+#progress-card .subject{font-size:34px}#progress-card .percent{color:#00a775;font-size:37px}#progress-card .progress-fill{background:#00bc86}#progress-card .secondary{display:flex;justify-content:space-between}
+#parent-card{top:720px;padding:44px;border:2px solid #e2e8f0}
+.avatar{width:71px;height:71px;background:#d1fae5;border:2px solid #a7f3d0;border-radius:50%;color:#00664e;display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:700}
+.name{font-size:30px;font-weight:700}.big-score{font-size:115px;font-weight:700;letter-spacing:-6px;line-height:1.1;color:#17203a;font-variant-numeric:tabular-nums}.grade{background:#ecfdf5;border:2px solid #a7f3d0;border-radius:24px;padding:20px 28px;color:#00865f;margin-left:auto;font-size:28px;font-weight:700}
+.native-score{background:linear-gradient(130deg,#faf5ff,#f5f3ff);border:2px solid #ede9fe;padding:28px;border-radius:30px;margin-top:28px}.native-score .big-score{color:#311565}.score-caption{font-size:24px;font-weight:650;color:#4c2688;letter-spacing:1px;margin:0 0 16px}.score-list{display:grid;gap:14px;margin-top:24px}.score-item{display:grid;grid-template-columns:1fr 55px;gap:20px;align-items:center;font-size:26px;background:#f8fafc;border:2px solid #e2e8f0;border-radius:26px;padding:20px 24px}.score-item b{text-align:right;color:#6025c9}.score-line{display:none}
+#touch{position:absolute;width:78px;height:78px;border:4px solid #6025c9;border-radius:50%;background:#c4b5fd36;box-shadow:0 0 0 14px #a78bfa22;z-index:10;opacity:0;pointer-events:none}
+.echo{position:absolute;left:210px;top:430px;width:660px;height:1407px;padding:10px;border:3px solid #d9d0e7;border-radius:50px;background:white;box-shadow:0 45px 100px -50px #32145788;overflow:hidden;opacity:0;transform-origin:50% 0;z-index:2}.echo-screen{position:relative;width:634px;height:1381px;border-radius:37px;overflow:hidden;background:#f8fafc}.echo img{display:block;width:634px;height:auto}
+#end-lockup{position:absolute;left:90px;right:90px;top:680px;text-align:center;z-index:10;opacity:0}
+#end-lockup img{width:230px;height:230px;object-fit:contain;margin-bottom:36px;padding:30px;background:white;border-radius:54px;filter:drop-shadow(0 12px 18px #12072c22)}
+#end-lockup h1{font-family:Jakarta,sans-serif;font-size:115px;font-weight:800;letter-spacing:-6px;line-height:1.1;margin:0;color:#fff}
+#end-lockup p{font-family:Jakarta,sans-serif;font-size:46px;line-height:1.35;letter-spacing:-1.5px;color:#e9ddff;margin:34px 0 0}
+#end-line{width:100px;height:5px;border-radius:3px;background:#baf5e0;margin:45px auto 0}
+#debug{display:none;position:fixed;bottom:12px;left:50%;transform:translateX(-50%);background:#130b25e8;color:white;padding:12px;border-radius:12px;z-index:50;align-items:center;gap:9px;font:13px Inter,sans-serif;width:min(95vw,700px)}#debug button{border:0;border-radius:7px;padding:8px;background:#eee6ff;color:#291351;cursor:pointer}#debug input{flex:1;min-width:60px;accent-color:#a78bfa}#debug time{min-width:66px}
+</style>
+</head>
+<body>
+<main id="stage" aria-label="Video promo OCS EDU. Spasi untuk jeda atau putar, R untuk mengulang.">
+ <div id="wash-a" class="wash"></div><div id="wash-b" class="wash"></div><div id="violet"></div><div id="orbit"></div>
+ <div id="brand-mini"><img src="assets/ocs-edu-icon.png" alt="">OCS EDU</div>
+ <div id="world">
+  <div class="desktop" id="desktop"><div class="chrome-bar"><i></i><i></i><i></i><span>OCS EDU · Portal Guru</span></div><img src="assets/guru-dashboard-1440.png" alt="Tampilan asli portal guru OCS EDU"></div>
+  <div class="echo" id="echo-teacher"><div class="echo-screen"><div class="echo-content"><img src="assets/guru-dashboard-430.png" alt="Portal guru"></div><div class="mobile-nav" id="nav-echo-teacher" aria-label="Navigasi portal guru"></div></div></div>
+  <div class="echo" id="echo-student"><div class="echo-screen"><div class="echo-content"><img src="assets/siswa-lms-430.png" alt="Ruang belajar siswa"></div><div class="mobile-nav" id="nav-echo-student" aria-label="Navigasi portal siswa"></div></div></div>
+  <div id="device"><div id="screen">
+   <div id="page-content">
+   <div id="pane-teacher" class="pane"><img src="assets/guru-dashboard-430.png" alt="Beranda guru"></div>
+   <div id="pane-schedule" class="pane"><img src="assets/guru-mengajar-430.png" alt="Jadwal mengajar guru"></div>
+   <div id="pane-student" class="pane"><img src="assets/siswa-lms-430.png" alt="Materi LMS siswa"></div>
+   <div id="pane-course" class="pane"><img src="assets/siswa-materi-430.png" alt="Detail ruang belajar Matematika Wajib"><div class="course-card-overlay"><div class="c-head"><span class="c-chap">BAB 1</span><span class="c-badge">✓ 3/4 Selesai</span></div><div class="c-title">Persamaan &amp; Pertidaksamaan Nilai Mutlak</div><div class="c-list"><div class="c-item done"><span class="c-icon">▶</span><div class="c-info"><strong>01. Konsep Dasar Nilai Mutlak</strong><small>Video materi pembelajaran · 12 menit</small></div><span class="c-tag">Selesai</span></div><div class="c-item done"><span class="c-icon">📄</span><div class="c-info"><strong>02. Persamaan Linear Nilai Mutlak</strong><small>Modul bacaan &amp; rangkuman rumus</small></div><span class="c-tag">Selesai</span></div><div class="c-item done"><span class="c-icon">📊</span><div class="c-info"><strong>03. Sifat &amp; Grafik Nilai Mutlak</strong><small>Simulasi grafik interaktif</small></div><span class="c-tag">Selesai</span></div><div class="c-item active"><span class="c-icon">📝</span><div class="c-info"><strong>04. Latihan Soal &amp; Kuis Bab 1</strong><small>15 Soal interaktif · Tenggat 23 Okt</small></div><span class="c-tag active">Dalam Proses</span></div></div></div></div>
+   <div id="pane-parent" class="pane"><img src="assets/ortu-dashboard-430.png" alt="Portal orang tua"></div>
+   <div id="pane-report" class="pane"><img src="assets/ortu-rapor-430.png" alt="Capaian akademik dan e-rapor"></div>
+   <div id="shade"></div>
+   </div>
+   <div class="mobile-nav" id="nav-main" aria-label="Navigasi portal"></div>
+  </div></div>
+  <div class="lift" id="teacher-card">
+   <div class="row teacher-piece"><div class="lesson">JAM KE<b>2</b></div><div class="square"><svg viewBox="0 0 32 32"><rect x="7" y="3" width="18" height="26" rx="3"/><path d="M11 9h10M11 15h2m6 0h2m-10 5h2m6 0h2m-10 5h2m6 0h2"/></svg></div><div><h2 class="subject">Matematika Wajib</h2><div class="secondary">XI-MIPA-1 Sains Unggul</div></div></div>
+   <div class="teacher-piece"><div class="pill"><span class="dot"></span>Sedang Berlangsung</div><br><div class="pill pending">● Presensi Belum Diinput</div></div>
+   <div class="rule"></div>
+   <div class="teacher-piece"><div class="tag">XI-MIPA-1 Sains Unggul (30 Siswa)</div><div class="tag">Ruang Kelas SMA 4</div><div class="tag">08:15 – 09:00 WIB</div></div>
+   <div class="teacher-piece"><span class="ui-button"><span class="check">✓</span>Presensi Kelas</span></div>
+  </div>
+  <div class="lift" id="learning-card">
+   <div class="row"><span class="subject-pill">Matematika Wajib</span><span class="percent"><span id="lms-percent">75</span>% Selesai</span></div>
+   <h2 class="subject">Matematika Wajib – X-MIPA-2 AI &amp; Komputasi</h2>
+   <div class="secondary">Kayla Syahputra, S.Pd.</div>
+   <div class="progress-track"><div id="lms-fill" class="progress-fill"></div></div>
+   <div class="learning-bottom"><span>4 Modul Pembelajaran</span><span class="ui-button" id="learn-button">Lanjutkan Belajar</span></div>
+  </div>
+  <div class="lift" id="progress-card">
+   <div class="row"><span class="check" style="color:#00a775">✓</span><h2 class="subject" style="margin:0">Progress Belajar</h2><span class="percent">75%</span></div>
+   <div class="progress-track"><div id="course-fill" class="progress-fill"></div></div>
+   <div class="secondary"><span>3 materi/tugas selesai</span><strong>Dalam Proses</strong></div>
+  </div>
+  <div class="lift" id="parent-card">
+   <div class="row"><div class="avatar">MP</div><div><div class="name">Muhammad Pratama</div><div class="secondary">X-MIPA-2 AI &amp; Komputasi</div></div></div>
+   <div class="native-score"><div class="score-caption">RATA-RATA NILAI AKHIR RAPOR</div>
+   <div class="row"><span class="big-score">79.8</span><span class="grade">B (Baik)</span></div></div>
+   <div class="rule"></div><div class="secondary" style="font-weight:700">Mata pelajaran unggulan</div>
+   <div class="score-list">
+    <div class="score-item">Pendidikan Agama Islam<b>85</b><div class="score-line"><i style="width:85%"></i></div></div>
+    <div class="score-item">Kimia Analitik<b>84</b><div class="score-line"><i style="width:84%"></i></div></div>
+    <div class="score-item">Ekonomi &amp; Keuangan<b>83</b><div class="score-line"><i style="width:83%"></i></div></div>
+   </div>
+  </div>
+ </div>
+ <h2 class="headline" id="h-open">Sekolah,<br><em>saling terhubung</em></h2>
+ <h2 class="headline" id="h-teacher">Mengajar<br><em>lebih terarah</em></h2>
+ <h2 class="headline" id="h-learn">Ruang belajar,<br><em>selalu dekat</em></h2>
+ <h2 class="headline center" id="h-progress">Belajar<br>terus berjalan</h2>
+ <h2 class="headline" id="h-parent">Orang tua<br><em>ikut memantau</em></h2>
+ <h2 class="headline" id="h-together">Satu sekolah<br><em>Semua terhubung</em></h2>
+ <div id="touch"></div>
+ <div id="end-lockup"><img src="assets/ocs-edu-icon.png" alt="Logo OCS EDU"><h1>OCS EDU</h1><p>Terhubung untuk tumbuh</p><div id="end-line"></div></div>
+</main>
+<audio id="music" src="assets/ocs-edu-original.wav" preload="auto"></audio>
+<aside id="debug"><button id="play" aria-label="Putar atau jeda">Putar / Jeda</button><button id="restart">Ulang</button><input id="scrub" type="range" min="0" max="35" step="0.01" value="0" aria-label="Posisi video"><time id="time">0.00 / 35</time></aside>
+<script src="assets/gsap.min.js"></script>
+<script>
+const W=1080,H=1920,DURATION=35,$=s=>document.querySelector(s);
+const clamp=v=>Math.max(0,Math.min(1,v));
+const ease=v=>{v=clamp(v);return v<.5?4*v*v*v:1-Math.pow(-2*v+2,3)/2};
+const out=v=>1-Math.pow(1-clamp(v),3);
+const p=(t,a,b)=>clamp((t-a)/(b-a));
+const mix=(a,b,v)=>a+(b-a)*v;
+const windowAt=(t,a,b,fade=.42)=>Math.min(out(p(t,a,a+fade)),1-ease(p(t,b-fade,b)));
+const nodes=new Map();function el(id){if(!nodes.has(id))nodes.set(id,document.getElementById(id));return nodes.get(id)}
+// Navbar is code-native and fixed to the device. Raster footers are clipped per pane.
+const navIcons={
+ home:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',
+ academic:'<path d="m2 9 10-5 10 5-10 5zM6 11v6c4 3 8 3 12 0v-6M22 9v7"/>',
+ book:'<path d="M12 5v16M12 5C8 2 3 3 2 4v16c4-2 7-1 10 1M12 5c4-3 9-2 10-1v16c-4-2-7-1-10 1"/>',
+ people:'<circle cx="9" cy="7" r="3"/><path d="M3 21v-3a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v3M16 4a3 3 0 0 1 0 6M18 13a4 4 0 0 1 3 4v4"/>',
+ billing:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 9h20"/>'
+};
+const navItems={teacher:[['Beranda','home'],['Akademik','academic',true],['E-Learning','book'],['Kesiswaan','people']],student:[['Beranda','home'],['Akademik','academic',true],['LMS','book'],['Tagihan','billing']],parent:[['Beranda','home'],['Anak Saya','people',true],['Tagihan','billing']]};
+function navbar(id,role,active){const n=el(id),state=role+':'+active;if(n.dataset.state===state)return;n.dataset.state=state;n.dataset.role=role;n.innerHTML=navItems[role].map(([label,icon,dot],i)=>`<div class="mobile-nav-item${i===active?' active':''}"${i===active?' aria-current="page"':''}><span class="mobile-nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true">${navIcons[icon]}</svg>${dot?'<i class="mobile-nav-dot"></i>':''}</span><span>${label}</span></div>`).join('');}
+navbar('nav-echo-teacher','teacher',0);navbar('nav-echo-student','student',2);
+// All devices use the same top-center origin; account for rotation at the baseline.
+function groundedY(scale,angle){const radians=angle*Math.PI/180;return 1640-430-scale*(1407*Math.cos(radians)+330*Math.abs(Math.sin(radians)));}
+function pose(id,{x=0,y=0,s=1,rx=0,ry=0,r=0,o=1,blur=0}={}){const n=el(id);n.style.transform=`translate3d(${x.toFixed(3)}px,${y.toFixed(3)}px,0) rotateX(${rx.toFixed(3)}deg) rotateY(${ry.toFixed(3)}deg) rotate(${r.toFixed(3)}deg) scale(${s.toFixed(5)})`;n.style.opacity=o.toFixed(5);n.style.visibility=o>.0001?'visible':'hidden';n.style.filter=blur?`blur(${blur.toFixed(2)}px)`:'none'}
+function pane(id,t,a,b,axis='x'){
+ const enter=ease(p(t,a,a+.75)),leave=ease(p(t,b,b+.65));
+ pose(id,{[axis]:mix(axis==='x'?634:1381,0,enter)-leave*(axis==='x'?634:1381),o:t>=a&&t<=b+.7?1:0});
+}
+function headline(id,t,a,b){pose(id,{y:mix(60,0,out(p(t,a,a+.8)))-ease(p(t,b-.4,b))*45,o:windowAt(t,a,b,.5)});}
+function lift(id,t,a,b,from,hold={}){
+ const enter=out(p(t,a,a+.85)),leave=ease(p(t,b-.5,b));
+ pose(id,{x:mix(from.x||0,hold.x||0,enter),y:mix(from.y||0,hold.y||0,enter)-leave*100,s:mix(from.s||1,hold.s||1,enter)*(1-leave*.06),rx:mix(from.rx||0,0,enter),ry:mix(from.ry||0,0,enter),o:windowAt(t,a,b,.25)});
+}
+function touch(t,a,x,y){const v=p(t,a,a+.6);pose('touch',{x:x-39,y:y-39,s:mix(.55,1.5,out(v)),o:t>=a&&t<a+.6?Math.sin(v*Math.PI):0});}
+function render(){
+ const t=tl.time(),breath=Math.sin(t*.6),deviceIn=ease(p(t,3.1,4.3));
+ pose('wash-a',{x:Math.sin(t*.2)*160,y:Math.cos(t*.16)*130,s:1+breath*.08});
+ pose('wash-b',{x:Math.cos(t*.25)*180,y:Math.sin(t*.21)*220});
+ pose('orbit',{x:Math.sin(t*.17)*75,y:Math.cos(t*.13)*60,r:t*2,s:1+Math.sin(t*.2)*.08});
+ const purple= Math.max(windowAt(t,17.8,21.9,.8),ease(p(t,31.3,32.2)));
+ el('violet').style.opacity=purple.toFixed(5);
+ el('brand-mini').style.color=purple>.5?'#fff':'#211a37';
+ pose('brand-mini',{o:1-ease(p(t,30.8,32))});
+ const desktopOut=ease(p(t,3.05,4.1));
+ pose('desktop',{x:-desktopOut*740,y:-45*p(t,0,3)-desktopOut*80,s:.88+.025*p(t,0,3)-desktopOut*.2,rx:6*(1-p(t,0,3)),ry:-9+7*p(t,0,3)-desktopOut*32,r:-2+2*p(t,0,3),o:1-desktopOut});
+ let dx=mix(680,0,deviceIn),dy=mix(200,0,deviceIn)+breath*6,ds=mix(.88,.94,deviceIn),dry=mix(28,0,deviceIn),drot=0;
+ // A single physical frame persists through the three roles.
+ dry+=Math.sin(p(t,10.05,11.15)*Math.PI)*-17;
+ dry+=Math.sin(p(t,20.8,22)*Math.PI)*17;
+ const finale=ease(p(t,28.9,30.2));
+ dx+=mix(0,270,finale);dy=mix(dy,groundedY(.94*.58,9),finale);ds*=mix(1,.58,finale);drot+=mix(0,9,finale);
+ const exit=ease(p(t,31.2,32.4));
+ pose('device',{x:dx+exit*450,y:dy+exit*900,s:ds*(1-exit*.2),ry:dry,r:drot,o:deviceIn*(1-exit)});
+ pane('pane-teacher',t,3.1,5.3,'y');pane('pane-schedule',t,5.3,10.15,'y');
+ pane('pane-student',t,10.15,15.5);pane('pane-course',t,15.5,21,'x');
+ pane('pane-parent',t,21,23.35);pane('pane-report',t,23.35,35,'y');
+ navbar('nav-main',t<10.5?'teacher':t<21.4?'student':'parent',t<10.5?0:t<21.4?2:0);
+ const dim=Math.max(windowAt(t,6.85,10.1),windowAt(t,12,15.65),windowAt(t,17.9,21.1),windowAt(t,24.6,29));
+ el('shade').style.opacity=(dim*.54).toFixed(5);
+ el('page-content').style.filter=`blur(${(dim*1.8).toFixed(3)}px)`;
+ lift('teacher-card',t,6.9,10.15,{x:174,y:325,s:.59},{y:0});
+ document.querySelectorAll('.teacher-piece').forEach((n,i)=>{const v=out(p(t,7.04+i*.12,7.65+i*.12));n.style.opacity=v.toFixed(5);n.style.transform=`translateY(${(20*(1-v)).toFixed(3)}px)`;});
+ lift('learning-card',t,12.05,15.8,{x:151,y:3,s:.642},{y:40});
+ el('lms-fill').style.transform=`scaleX(${out(p(t,12.6,13.6)).toFixed(5)})`;
+ // The progress animation reveals the existing 75% value; no task is submitted.
+ el('learn-button').style.transform=`scale(${(1-.045*Math.sin(p(t,15.15,15.5)*Math.PI)).toFixed(5)})`;
+ lift('progress-card',t,17.9,21.1,{x:108,y:260,s:.72},{y:25});
+ el('course-fill').style.transform=`scaleX(${out(p(t,18.15,19.1)).toFixed(5)})`;
+ lift('parent-card',t,24.65,29.15,{x:102,y:30,s:.74},{y:-25});
+ document.querySelectorAll('.score-line i').forEach((n,i)=>{n.style.transform=`scaleX(${out(p(t,25.15+i*.16,26.1+i*.16)).toFixed(5)})`;});
+ document.querySelectorAll('.score-item').forEach((n,i)=>{const v=out(p(t,25+i*.14,25.65+i*.14));n.style.opacity=v.toFixed(5);n.style.transform=`translateX(${(25*(1-v)).toFixed(3)}px)`;});
+ headline('h-open',t,-.7,3.4);headline('h-teacher',t,3.5,10.25);
+ headline('h-learn',t,10.45,17.9);headline('h-progress',t,18,21.5);
+ headline('h-parent',t,21.4,29.15);headline('h-together',t,29.3,31.75);
+ const fan=out(p(t,29.05,30.25)),fadeFan=1-ease(p(t,31.1,32.2));
+ pose('echo-teacher',{x:mix(-750,-270,fan)-exit*450,y:mix(groundedY(.58,-9)+400,groundedY(.58,-9),fan)+exit*850,s:.58,r:mix(-22,-9,fan),o:fan*fadeFan});
+ pose('echo-student',{x:0,y:mix(groundedY(.62,0)+600,groundedY(.62,0),fan)+exit*1000,s:.62,r:0,o:fan*fadeFan});
+ pose('end-lockup',{y:mix(160,0,out(p(t,31.8,33))),s:mix(.94,1,out(p(t,31.8,33))),o:out(p(t,31.8,32.6))});
+ el('end-line').style.transform=`scaleX(${out(p(t,32.8,33.6)).toFixed(5)})`;
+ if(t>=15.1&&t<15.7)touch(t,15.1,815,1070);
+ else pose('touch',{o:0});
+ el('scrub').value=t;el('time').textContent=t.toFixed(2)+' / 35';
+}
+const clock={t:0};const music=$('#music');let ready=false,playToken=0;
+const tl=gsap.timeline({paused:true,onUpdate:()=>{render();if(!tl.paused()&&!music.paused&&Math.abs(music.currentTime-tl.time())>.16)music.currentTime=tl.time();},onComplete:()=>{music.currentTime=0;tl.pause(0);render();play();}});
+tl.to(clock,{t:DURATION,duration:DURATION,ease:'none'});
+function fit(){const s=Math.min(innerWidth/W,innerHeight/H);el('stage').style.transform=`translate(-50%,-50%) scale(${s})`;}
+function pause(){playToken++;tl.pause();music.pause();}
+function seek(t){pause();tl.time(Math.max(0,Math.min(DURATION-.00001,t)),true);music.currentTime=tl.time();render();}
+async function play(){if(!ready)return;const token=++playToken;music.currentTime=tl.time();try{await music.play();if(token===playToken)tl.play();}catch{if(token===playToken)tl.pause();}}
+function restart(){seek(0);play();}function toggle(){tl.paused()?play():pause();}
+window.OPENER={W,H,DURATION,tl,seek,play,pause,restart,get ready(){return ready}};
+addEventListener('resize',fit);fit();render();
+const params=new URLSearchParams(location.search);
+if(params.has('debug'))el('debug').style.display='flex';
+el('play').addEventListener('click',toggle);el('restart').addEventListener('click',restart);el('scrub').addEventListener('input',e=>seek(Number(e.target.value)));
+el('stage').addEventListener('click',()=>{if(tl.paused())play()});
+addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.code==='Space'){e.preventDefault();toggle()}if(e.code==='KeyR')restart()});
+Promise.all([document.fonts.ready,...[...document.images].map(img=>img.decode()),new Promise(resolve=>{if(music.readyState>=1)resolve();else music.addEventListener('loadedmetadata',resolve,{once:true})})]).then(()=>{ready=true;render();if(!params.has('clean')&&!params.has('debug'))play();});
+</script>
+</body></html>

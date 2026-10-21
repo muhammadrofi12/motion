@@ -1,0 +1,68 @@
+{
+  "status": "passed",
+  "info": {
+    "duration": 18,
+    "audio": 18,
+    "images": true,
+    "fonts": [
+      true,
+      true
+    ],
+    "debug": "none"
+  },
+  "snapshots": [
+    0,
+    1.2,
+    2.8,
+    4.6,
+    5.6,
+    6.8,
+    7.35,
+    8.9,
+    9.75,
+    10.6,
+    11.7,
+    13.1,
+    14.5,
+    16.5,
+    17.6
+  ],
+  "deterministicSeek": {
+    "identicalStyles": true,
+    "maxDelta": 0
+  },
+  "touch": {
+    "button": {
+      "left": 686.5806884765625,
+      "right": 880.3759765625,
+      "top": 1213.0684814453125,
+      "bottom": 1262.36572265625
+    },
+    "cursor": {
+      "x": 783.2547302246094,
+      "y": 1244.5233764648438
+    }
+  },
+  "mobile": {
+    "left": 0,
+    "right": 390,
+    "top": 75.33334350585938,
+    "bottom": 768.6665954589844,
+    "overflow": false
+  },
+  "playback": {
+    "t": 5.695,
+    "audio": 5.498379,
+    "paused": false
+  },
+  "loop": {
+    "t": 0.448,
+    "audio": 0.392604,
+    "paused": false
+  },
+  "offline": true,
+  "autoplayGate": true,
+  "mediaSeekAborts": 2,
+  "errors": [],
+  "requests": []
+}
