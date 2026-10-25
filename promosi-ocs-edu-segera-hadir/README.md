@@ -43,6 +43,12 @@ Pesan rilis tidak menyebut tanggal, fitur baru tertentu, platform listing, atau 
 
 ## Pemeliharaan
 
+Jalankan perintah berikut untuk mengekspor dan mengonversi video ke MP4 2K (1440 × 2560 @ 60fps):
+```text
+node scripts/review.mjs
+node scripts/render-video.mjs
+```
+
 `window.OPENER` menyediakan `W`, `H`, `DURATION`, `tl`, `ready`, `seek(detik)`, `play()`, `pause()`, dan `restart()`. Seluruh visual bergantung pada waktu timeline untuk preview dan ekspor deterministik.
 
 `scripts/review.mjs` memeriksa keyframe, batas teks, sentuhan LMS, seek berulang, viewport mobile, audio dan loop, pemuatan offline, serta penahanan autoplay sampai gestur pengguna. Script memakai Puppeteer yang sudah tersedia pada project landing page lokal. Hasil terakhir disimpan dalam `review/verification.json`.

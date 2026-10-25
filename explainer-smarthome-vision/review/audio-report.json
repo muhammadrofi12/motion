@@ -1,0 +1,12 @@
+{
+  "duration": 78.73140625,
+  "sampleRate": 32000,
+  "sourceChannels": 1,
+  "outputChannels": 2,
+  "peakBeforeGain": 0.936910846940503,
+  "gain": 1,
+  "peakAfterGain": 0.936910846940503,
+  "voiceTimeStretch": false,
+  "music": "Original synthesized bed, speech ducked",
+  "effects": "Original procedural chimes and whooshes"
+}

@@ -1,0 +1,23 @@
+{
+  "sourceSHA256": "6c3b2f66b43f1844bec081b16fadb1f7ee57fe6098d9d72c5f54175a2372228c",
+  "fps": 60,
+  "width": 1440,
+  "height": 2560,
+  "cssWidth": 1080,
+  "cssHeight": 1920,
+  "scale": 1.3333333333333333,
+  "duration": 78.73140625,
+  "total": 4724,
+  "format": "JPEG",
+  "quality": 98,
+  "completed": 4724,
+  "elapsedSeconds": 367.2554758,
+  "videoCodec": "H.264 High (libx264)",
+  "crf": 16,
+  "bitrate": "CRF 16",
+  "audioCodec": "AAC",
+  "audioBitrate": "320k",
+  "audioSampleRate": 48000,
+  "encodeSeconds": 403.6342567,
+  "output": "C:\\Belajar_Pemograman\\Project\\motion\\explainer-smarthome-vision\\explainer-smarthome-vision-2k.mp4"
+}

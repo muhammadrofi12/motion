@@ -1,0 +1,19 @@
+@font-face{font-family:Bricolage;src:url('assets/bricolage.font');font-weight:500 800;font-display:block}
+@font-face{font-family:Caveat;src:url('assets/caveat.font');font-weight:400 700;font-display:block}
+@font-face{font-family:Jakarta;src:url('assets/jakarta.font');font-weight:400 800;font-display:block}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:clip;background:#dbe5f0;color:#0f172a;font-family:Jakarta,sans-serif}body{position:fixed;inset:0}
+#stage{position:absolute;left:50%;top:50%;width:1080px;height:1920px;overflow:hidden;isolation:isolate;background:#f8fafc;transform:translate(-50%,-50%)}
+#ambient{position:absolute;inset:-300px;background:radial-gradient(ellipse at 70% 47%,#bfdbfeaa,transparent 52%),radial-gradient(ellipse at 9% 85%,#a7e9d666,transparent 50%),linear-gradient(160deg,#fffaf2,#f8fafc 45%,#e5f0ff)}
+#grid{position:absolute;inset:-500px;background-image:linear-gradient(#5780b40b 1px,transparent 1px),linear-gradient(90deg,#5780b40b 1px,transparent 1px);background-size:66px 66px;transform:rotate(-14deg);mask-image:radial-gradient(ellipse,black,transparent 65%)}
+#grain{position:absolute;inset:-40px;opacity:.035;pointer-events:none;z-index:9;mix-blend-mode:multiply}
+#film{position:absolute;inset:0;overflow:hidden}#film text{font-family:Jakarta,sans-serif}#film .layer-title text{font-family:Bricolage,sans-serif}
+#world{transform-origin:0 0;will-change:transform}.layer{will-change:transform}.layer .floor{filter:url(#softShadow)}
+#brand{position:absolute;left:78px;top:92px;display:flex;align-items:center;gap:18px;font-size:30px;font-weight:800;letter-spacing:-1px;z-index:12;color:#0f172a}
+#brand svg{width:55px;height:55px;color:#0066ff}#brand span span{font-weight:500;margin-left:6px}
+#heading{position:absolute;left:80px;top:231px;right:80px;z-index:10;pointer-events:none}
+#headline{font:650 97px/.99 Bricolage,sans-serif;letter-spacing:-4.5px;transform-origin:0 50%}#headline em{font-style:normal;color:#0066ff}#headline.compact{font-size:88px}
+#note{position:absolute;left:70px;right:70px;bottom:235px;z-index:11;font:600 43px/1.1 Caveat,cursive;text-align:center;color:#305b85}
+#status{position:absolute;left:65px;right:65px;bottom:130px;font-size:28px;font-weight:600;text-align:center;color:#425874;z-index:12}#status span{margin:0 13px;color:#0066ff}
+#outro{position:absolute;top:365px;left:100px;right:100px;text-align:center;opacity:0;z-index:13;visibility:hidden}#outro svg{width:132px;height:132px;color:#0066ff;margin-bottom:25px}#outro div{font:650 112px/.92 Bricolage,sans-serif;letter-spacing:-6px}#outro em{font-style:normal;color:#0066ff}#outro p{font:600 39px Jakarta,sans-serif;margin-top:49px;color:#24476f}
+#endnote{position:absolute;bottom:195px;left:60px;right:60px;text-align:center;font-size:30px;color:#305574;z-index:13;opacity:0}
+#dbg{display:none;position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:30;background:#10253deb;color:white;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;font:13px system-ui;max-width:98vw}#dbg input{width:260px}#dbg button{padding:8px;border:0;border-radius:6px}#dClock{white-space:nowrap;font-variant-numeric:tabular-nums}

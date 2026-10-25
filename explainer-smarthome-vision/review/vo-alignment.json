@@ -1,0 +1,876 @@
+{
+  "duration": 78.7314375,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 6.54,
+      "text": " Punya CCTV beda mereka di rumah, tapi capek buka banyak aplikasi, dan fiturnya cuma rekampasif.",
+      "words": [
+        {
+          "start": 0.0,
+          "end": 0.32,
+          "word": " Punya"
+        },
+        {
+          "start": 0.32,
+          "end": 0.74,
+          "word": " CCTV"
+        },
+        {
+          "start": 0.74,
+          "end": 1.22,
+          "word": " beda"
+        },
+        {
+          "start": 1.22,
+          "end": 1.44,
+          "word": " mereka"
+        },
+        {
+          "start": 1.44,
+          "end": 1.66,
+          "word": " di"
+        },
+        {
+          "start": 1.66,
+          "end": 1.86,
+          "word": " rumah,"
+        },
+        {
+          "start": 2.26,
+          "end": 2.42,
+          "word": " tapi"
+        },
+        {
+          "start": 2.42,
+          "end": 3.0,
+          "word": " capek"
+        },
+        {
+          "start": 3.0,
+          "end": 3.18,
+          "word": " buka"
+        },
+        {
+          "start": 3.18,
+          "end": 3.5,
+          "word": " banyak"
+        },
+        {
+          "start": 3.5,
+          "end": 4.22,
+          "word": " aplikasi,"
+        },
+        {
+          "start": 4.68,
+          "end": 4.78,
+          "word": " dan"
+        },
+        {
+          "start": 4.78,
+          "end": 5.44,
+          "word": " fiturnya"
+        },
+        {
+          "start": 5.44,
+          "end": 5.66,
+          "word": " cuma"
+        },
+        {
+          "start": 5.66,
+          "end": 6.54,
+          "word": " rekampasif."
+        }
+      ]
+    },
+    {
+      "start": 6.88,
+      "end": 9.74,
+      "text": " Sekarang, satu kan semuanya di Smart Home Vision.",
+      "words": [
+        {
+          "start": 6.88,
+          "end": 7.54,
+          "word": " Sekarang,"
+        },
+        {
+          "start": 7.82,
+          "end": 8.02,
+          "word": " satu"
+        },
+        {
+          "start": 8.02,
+          "end": 8.2,
+          "word": " kan"
+        },
+        {
+          "start": 8.2,
+          "end": 8.64,
+          "word": " semuanya"
+        },
+        {
+          "start": 8.64,
+          "end": 8.86,
+          "word": " di"
+        },
+        {
+          "start": 8.86,
+          "end": 9.2,
+          "word": " Smart"
+        },
+        {
+          "start": 9.2,
+          "end": 9.4,
+          "word": " Home"
+        },
+        {
+          "start": 9.4,
+          "end": 9.74,
+          "word": " Vision."
+        }
+      ]
+    },
+    {
+      "start": 10.4,
+      "end": 14.7,
+      "text": " Di balik layarnya, kami membangun architecture system 4 lapisan.",
+      "words": [
+        {
+          "start": 10.4,
+          "end": 10.54,
+          "word": " Di"
+        },
+        {
+          "start": 10.54,
+          "end": 10.86,
+          "word": " balik"
+        },
+        {
+          "start": 10.86,
+          "end": 11.26,
+          "word": " layarnya,"
+        },
+        {
+          "start": 11.9,
+          "end": 12.12,
+          "word": " kami"
+        },
+        {
+          "start": 12.12,
+          "end": 12.58,
+          "word": " membangun"
+        },
+        {
+          "start": 12.58,
+          "end": 13.04,
+          "word": " architecture"
+        },
+        {
+          "start": 13.04,
+          "end": 13.66,
+          "word": " system"
+        },
+        {
+          "start": 13.66,
+          "end": 14.14,
+          "word": " 4"
+        },
+        {
+          "start": 14.14,
+          "end": 14.7,
+          "word": " lapisan."
+        }
+      ]
+    },
+    {
+      "start": 15.32,
+      "end": 23.8,
+      "text": " Pertama, ingestion layer, menarik aliran video dari Xiaomi, TAPO, atau kamera RTSP biasa tanpa jadalah tensi.",
+      "words": [
+        {
+          "start": 15.32,
+          "end": 15.76,
+          "word": " Pertama,"
+        },
+        {
+          "start": 16.26,
+          "end": 16.7,
+          "word": " ingestion"
+        },
+        {
+          "start": 16.7,
+          "end": 17.12,
+          "word": " layer,"
+        },
+        {
+          "start": 17.64,
+          "end": 18.0,
+          "word": " menarik"
+        },
+        {
+          "start": 18.0,
+          "end": 18.24,
+          "word": " aliran"
+        },
+        {
+          "start": 18.24,
+          "end": 18.62,
+          "word": " video"
+        },
+        {
+          "start": 18.62,
+          "end": 18.86,
+          "word": " dari"
+        },
+        {
+          "start": 18.86,
+          "end": 19.24,
+          "word": " Xiaomi,"
+        },
+        {
+          "start": 19.74,
+          "end": 20.1,
+          "word": " TAPO,"
+        },
+        {
+          "start": 20.44,
+          "end": 20.6,
+          "word": " atau"
+        },
+        {
+          "start": 20.6,
+          "end": 20.98,
+          "word": " kamera"
+        },
+        {
+          "start": 20.98,
+          "end": 21.78,
+          "word": " RTSP"
+        },
+        {
+          "start": 21.78,
+          "end": 22.26,
+          "word": " biasa"
+        },
+        {
+          "start": 22.26,
+          "end": 22.94,
+          "word": " tanpa"
+        },
+        {
+          "start": 22.94,
+          "end": 23.3,
+          "word": " jadalah"
+        },
+        {
+          "start": 23.3,
+          "end": 23.8,
+          "word": " tensi."
+        }
+      ]
+    },
+    {
+      "start": 24.42,
+      "end": 26.4,
+      "text": " Kedua AI Vision Engine",
+      "words": [
+        {
+          "start": 24.42,
+          "end": 24.74,
+          "word": " Kedua"
+        },
+        {
+          "start": 24.74,
+          "end": 25.54,
+          "word": " AI"
+        },
+        {
+          "start": 25.54,
+          "end": 25.98,
+          "word": " Vision"
+        },
+        {
+          "start": 25.98,
+          "end": 26.4,
+          "word": " Engine"
+        }
+      ]
+    },
+    {
+      "start": 26.4,
+      "end": 36.94,
+      "text": " Sechara real-time, yolo mendeteksi kendaraan, orang dan paket, cementara system melacak lintasan zona, dan mengenali wajah ke luarga dari orang asing.",
+      "words": [
+        {
+          "start": 26.4,
+          "end": 27.4,
+          "word": " Sechara"
+        },
+        {
+          "start": 27.4,
+          "end": 27.58,
+          "word": " real"
+        },
+        {
+          "start": 27.58,
+          "end": 27.92,
+          "word": "-time,"
+        },
+        {
+          "start": 28.44,
+          "end": 28.7,
+          "word": " yolo"
+        },
+        {
+          "start": 28.7,
+          "end": 29.34,
+          "word": " mendeteksi"
+        },
+        {
+          "start": 29.34,
+          "end": 30.12,
+          "word": " kendaraan,"
+        },
+        {
+          "start": 30.34,
+          "end": 30.54,
+          "word": " orang"
+        },
+        {
+          "start": 30.54,
+          "end": 30.84,
+          "word": " dan"
+        },
+        {
+          "start": 30.84,
+          "end": 31.42,
+          "word": " paket,"
+        },
+        {
+          "start": 31.82,
+          "end": 32.16,
+          "word": " cementara"
+        },
+        {
+          "start": 32.16,
+          "end": 32.56,
+          "word": " system"
+        },
+        {
+          "start": 32.56,
+          "end": 33.1,
+          "word": " melacak"
+        },
+        {
+          "start": 33.1,
+          "end": 33.48,
+          "word": " lintasan"
+        },
+        {
+          "start": 33.48,
+          "end": 34.02,
+          "word": " zona,"
+        },
+        {
+          "start": 34.36,
+          "end": 34.46,
+          "word": " dan"
+        },
+        {
+          "start": 34.46,
+          "end": 34.96,
+          "word": " mengenali"
+        },
+        {
+          "start": 34.96,
+          "end": 35.36,
+          "word": " wajah"
+        },
+        {
+          "start": 35.36,
+          "end": 35.5,
+          "word": " ke"
+        },
+        {
+          "start": 35.5,
+          "end": 35.9,
+          "word": " luarga"
+        },
+        {
+          "start": 35.9,
+          "end": 36.12,
+          "word": " dari"
+        },
+        {
+          "start": 36.12,
+          "end": 36.42,
+          "word": " orang"
+        },
+        {
+          "start": 36.42,
+          "end": 36.94,
+          "word": " asing."
+        }
+      ]
+    },
+    {
+      "start": 37.44,
+      "end": 46.0,
+      "text": " Ketiga, data, security core, mencetat setiap kejadian sechara lokal, dan teren kripsi tanpa bergantung pada cloud luar.",
+      "words": [
+        {
+          "start": 37.44,
+          "end": 37.86,
+          "word": " Ketiga,"
+        },
+        {
+          "start": 38.3,
+          "end": 38.44,
+          "word": " data,"
+        },
+        {
+          "start": 38.92,
+          "end": 39.28,
+          "word": " security"
+        },
+        {
+          "start": 39.28,
+          "end": 39.66,
+          "word": " core,"
+        },
+        {
+          "start": 40.1,
+          "end": 40.48,
+          "word": " mencetat"
+        },
+        {
+          "start": 40.48,
+          "end": 40.92,
+          "word": " setiap"
+        },
+        {
+          "start": 40.92,
+          "end": 41.38,
+          "word": " kejadian"
+        },
+        {
+          "start": 41.38,
+          "end": 41.94,
+          "word": " sechara"
+        },
+        {
+          "start": 41.94,
+          "end": 42.28,
+          "word": " lokal,"
+        },
+        {
+          "start": 42.86,
+          "end": 42.96,
+          "word": " dan"
+        },
+        {
+          "start": 42.96,
+          "end": 43.28,
+          "word": " teren"
+        },
+        {
+          "start": 43.28,
+          "end": 43.88,
+          "word": " kripsi"
+        },
+        {
+          "start": 43.88,
+          "end": 44.52,
+          "word": " tanpa"
+        },
+        {
+          "start": 44.52,
+          "end": 45.02,
+          "word": " bergantung"
+        },
+        {
+          "start": 45.02,
+          "end": 45.26,
+          "word": " pada"
+        },
+        {
+          "start": 45.26,
+          "end": 45.6,
+          "word": " cloud"
+        },
+        {
+          "start": 45.6,
+          "end": 46.0,
+          "word": " luar."
+        }
+      ]
+    },
+    {
+      "start": 46.44,
+      "end": 50.26,
+      "text": " Denka empat, presentation layer dengan system design semantic.",
+      "words": [
+        {
+          "start": 46.44,
+          "end": 46.82,
+          "word": " Denka"
+        },
+        {
+          "start": 46.82,
+          "end": 47.24,
+          "word": " empat,"
+        },
+        {
+          "start": 47.64,
+          "end": 48.04,
+          "word": " presentation"
+        },
+        {
+          "start": 48.04,
+          "end": 48.46,
+          "word": " layer"
+        },
+        {
+          "start": 48.46,
+          "end": 48.72,
+          "word": " dengan"
+        },
+        {
+          "start": 48.72,
+          "end": 49.16,
+          "word": " system"
+        },
+        {
+          "start": 49.16,
+          "end": 49.58,
+          "word": " design"
+        },
+        {
+          "start": 49.58,
+          "end": 50.26,
+          "word": " semantic."
+        }
+      ]
+    },
+    {
+      "start": 50.26,
+      "end": 59.3,
+      "text": " Warna Orainya memetakkan area private pintu, warna hijau memfalli dasi access aman gerbang, dan kartu hitam,",
+      "words": [
+        {
+          "start": 50.26,
+          "end": 51.24,
+          "word": " Warna"
+        },
+        {
+          "start": 51.24,
+          "end": 51.74,
+          "word": " Orainya"
+        },
+        {
+          "start": 51.74,
+          "end": 52.38,
+          "word": " memetakkan"
+        },
+        {
+          "start": 52.38,
+          "end": 52.66,
+          "word": " area"
+        },
+        {
+          "start": 52.66,
+          "end": 53.04,
+          "word": " private"
+        },
+        {
+          "start": 53.04,
+          "end": 53.62,
+          "word": " pintu,"
+        },
+        {
+          "start": 54.3,
+          "end": 54.74,
+          "word": " warna"
+        },
+        {
+          "start": 54.74,
+          "end": 55.18,
+          "word": " hijau"
+        },
+        {
+          "start": 55.18,
+          "end": 55.74,
+          "word": " memfalli"
+        },
+        {
+          "start": 55.74,
+          "end": 56.08,
+          "word": " dasi"
+        },
+        {
+          "start": 56.08,
+          "end": 56.42,
+          "word": " access"
+        },
+        {
+          "start": 56.42,
+          "end": 56.78,
+          "word": " aman"
+        },
+        {
+          "start": 56.78,
+          "end": 57.22,
+          "word": " gerbang,"
+        },
+        {
+          "start": 58.1,
+          "end": 58.32,
+          "word": " dan"
+        },
+        {
+          "start": 58.32,
+          "end": 58.86,
+          "word": " kartu"
+        },
+        {
+          "start": 58.86,
+          "end": 59.3,
+          "word": " hitam,"
+        }
+      ]
+    },
+    {
+      "start": 59.66,
+      "end": 63.36,
+      "text": " orang menampilkan plat nomor kendaraan agar terbaca kontras.",
+      "words": [
+        {
+          "start": 59.66,
+          "end": 59.9,
+          "word": " orang"
+        },
+        {
+          "start": 59.9,
+          "end": 60.68,
+          "word": " menampilkan"
+        },
+        {
+          "start": 60.68,
+          "end": 60.9,
+          "word": " plat"
+        },
+        {
+          "start": 60.9,
+          "end": 61.28,
+          "word": " nomor"
+        },
+        {
+          "start": 61.28,
+          "end": 61.94,
+          "word": " kendaraan"
+        },
+        {
+          "start": 61.94,
+          "end": 62.32,
+          "word": " agar"
+        },
+        {
+          "start": 62.32,
+          "end": 62.78,
+          "word": " terbaca"
+        },
+        {
+          "start": 62.78,
+          "end": 63.36,
+          "word": " kontras."
+        }
+      ]
+    },
+    {
+      "start": 63.96,
+      "end": 71.62,
+      "text": " Kamu juga bisa mengontrol arah kamera dengan deep head, menyalakan lampu sorot, dan kamera otomatis kembali ke posisi jaga.",
+      "words": [
+        {
+          "start": 63.96,
+          "end": 64.24,
+          "word": " Kamu"
+        },
+        {
+          "start": 64.24,
+          "end": 64.46,
+          "word": " juga"
+        },
+        {
+          "start": 64.46,
+          "end": 64.68,
+          "word": " bisa"
+        },
+        {
+          "start": 64.68,
+          "end": 65.28,
+          "word": " mengontrol"
+        },
+        {
+          "start": 65.28,
+          "end": 65.66,
+          "word": " arah"
+        },
+        {
+          "start": 65.66,
+          "end": 65.92,
+          "word": " kamera"
+        },
+        {
+          "start": 65.92,
+          "end": 66.24,
+          "word": " dengan"
+        },
+        {
+          "start": 66.24,
+          "end": 66.6,
+          "word": " deep"
+        },
+        {
+          "start": 66.6,
+          "end": 66.88,
+          "word": " head,"
+        },
+        {
+          "start": 67.28,
+          "end": 67.7,
+          "word": " menyalakan"
+        },
+        {
+          "start": 67.7,
+          "end": 68.1,
+          "word": " lampu"
+        },
+        {
+          "start": 68.1,
+          "end": 68.62,
+          "word": " sorot,"
+        },
+        {
+          "start": 68.92,
+          "end": 68.96,
+          "word": " dan"
+        },
+        {
+          "start": 68.96,
+          "end": 69.32,
+          "word": " kamera"
+        },
+        {
+          "start": 69.32,
+          "end": 69.98,
+          "word": " otomatis"
+        },
+        {
+          "start": 69.98,
+          "end": 70.46,
+          "word": " kembali"
+        },
+        {
+          "start": 70.46,
+          "end": 70.66,
+          "word": " ke"
+        },
+        {
+          "start": 70.66,
+          "end": 71.02,
+          "word": " posisi"
+        },
+        {
+          "start": 71.02,
+          "end": 71.62,
+          "word": " jaga."
+        }
+      ]
+    },
+    {
+      "start": 72.16,
+      "end": 76.12,
+      "text": " Satu system, kendali penuh, tanpa biaya langganan per kamera.",
+      "words": [
+        {
+          "start": 72.16,
+          "end": 72.5,
+          "word": " Satu"
+        },
+        {
+          "start": 72.5,
+          "end": 72.86,
+          "word": " system,"
+        },
+        {
+          "start": 73.28,
+          "end": 73.58,
+          "word": " kendali"
+        },
+        {
+          "start": 73.58,
+          "end": 74.06,
+          "word": " penuh,"
+        },
+        {
+          "start": 74.44,
+          "end": 74.68,
+          "word": " tanpa"
+        },
+        {
+          "start": 74.68,
+          "end": 74.96,
+          "word": " biaya"
+        },
+        {
+          "start": 74.96,
+          "end": 75.58,
+          "word": " langganan"
+        },
+        {
+          "start": 75.58,
+          "end": 75.7,
+          "word": " per"
+        },
+        {
+          "start": 75.7,
+          "end": 76.12,
+          "word": " kamera."
+        }
+      ]
+    },
+    {
+      "start": 76.76,
+      "end": 78.42,
+      "text": " Check Smart Home Vision sekarang.",
+      "words": [
+        {
+          "start": 76.76,
+          "end": 76.88,
+          "word": " Check"
+        },
+        {
+          "start": 76.88,
+          "end": 77.26,
+          "word": " Smart"
+        },
+        {
+          "start": 77.26,
+          "end": 77.46,
+          "word": " Home"
+        },
+        {
+          "start": 77.46,
+          "end": 77.76,
+          "word": " Vision"
+        },
+        {
+          "start": 77.76,
+          "end": 78.42,
+          "word": " sekarang."
+        }
+      ]
+    }
+  ]
+}

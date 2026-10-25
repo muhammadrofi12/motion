@@ -1,0 +1,130 @@
+{
+  "status": "passed",
+  "measurements": [
+    {
+      "time": 0,
+      "naturalWidth": 1200,
+      "naturalHeight": 675,
+      "outerHeight": 844.875,
+      "unusedHeight": 0,
+      "desktopTop": 714.2839965820312,
+      "desktopBottom": 1506.1234130859375,
+      "headlineBottom": 476.86700439453125,
+      "top": "700px",
+      "opacity": 1,
+      "transform": "translate3d(0px, 0px, 0px) rotateX(6deg) rotateY(-9deg) rotate(-2deg) scale(0.88)"
+    },
+    {
+      "time": 1.5,
+      "naturalWidth": 1200,
+      "naturalHeight": 675,
+      "outerHeight": 844.875,
+      "unusedHeight": 0,
+      "desktopTop": 703.6061401367188,
+      "desktopBottom": 1488.542236328125,
+      "headlineBottom": 476.75,
+      "top": "700px",
+      "opacity": 1,
+      "transform": "translate3d(0px, -22.5px, 0px) rotateX(3deg) rotateY(-5.5deg) rotate(-1deg) scale(0.8925)"
+    },
+    {
+      "time": 2.5,
+      "naturalWidth": 1200,
+      "naturalHeight": 675,
+      "outerHeight": 844.875,
+      "unusedHeight": 0,
+      "desktopTop": 695.70458984375,
+      "desktopBottom": 1474.396484375,
+      "headlineBottom": 476.75,
+      "top": "700px",
+      "opacity": 1,
+      "transform": "translate3d(0px, -37.5px, 0px) rotateX(1deg) rotateY(-3.167deg) rotate(-0.333deg) scale(0.90083)"
+    },
+    {
+      "time": 3.05,
+      "naturalWidth": 1200,
+      "naturalHeight": 675,
+      "outerHeight": 844.875,
+      "unusedHeight": 0,
+      "desktopTop": 691.4740600585938,
+      "desktopBottom": 1466.644287109375,
+      "headlineBottom": 476.39801025390625,
+      "top": "700px",
+      "opacity": 1,
+      "transform": "translate3d(0px, -45px, 0px) rotateX(0deg) rotateY(-2deg) rotate(0deg) scale(0.905)"
+    },
+    {
+      "time": 3.3,
+      "naturalWidth": 1200,
+      "naturalHeight": 675,
+      "outerHeight": 844.875,
+      "unusedHeight": 0,
+      "desktopTop": 688.5692138671875,
+      "desktopBottom": 1463.4862060546875,
+      "headlineBottom": 434.56298828125,
+      "top": "700px",
+      "opacity": 0.94601,
+      "transform": "translate3d(-39.952px, -49.319px, 0px) rotateX(0deg) rotateY(-3.728deg) rotate(0deg) scale(0.8942)"
+    },
+    {
+      "time": 3.6,
+      "naturalWidth": 1200,
+      "naturalHeight": 675,
+      "outerHeight": 844.875,
+      "unusedHeight": 0,
+      "desktopTop": 662.680419921875,
+      "desktopBottom": 1420.51513671875,
+      "headlineBottom": 431.75,
+      "top": "700px",
+      "opacity": 0.43192,
+      "transform": "translate3d(-420.38px, -90.446px, 0px) rotateX(0deg) rotateY(-20.179deg) rotate(0deg) scale(0.79138)"
+    },
+    {
+      "time": 3.9,
+      "naturalWidth": 1200,
+      "naturalHeight": 675,
+      "outerHeight": 844.875,
+      "unusedHeight": 0,
+      "desktopTop": 647.1168212890625,
+      "desktopBottom": 1368.12353515625,
+      "headlineBottom": 431.75,
+      "top": "700px",
+      "opacity": 0.02764,
+      "transform": "translate3d(-719.544px, -122.789px, 0px) rotateX(0deg) rotateY(-33.115deg) rotate(0deg) scale(0.71053)"
+    },
+    {
+      "time": 4.1,
+      "naturalWidth": 1200,
+      "naturalHeight": 675,
+      "outerHeight": 844.875,
+      "unusedHeight": 0,
+      "desktopTop": 646.283447265625,
+      "desktopBottom": 1363.9287109375,
+      "headlineBottom": 431.75,
+      "top": "700px",
+      "opacity": 0,
+      "transform": "translate3d(-740px, -125px, 0px) rotateX(0deg) rotateY(-34deg) rotate(0deg) scale(0.705)"
+    },
+    {
+      "time": 4.3,
+      "naturalWidth": 1200,
+      "naturalHeight": 675,
+      "outerHeight": 844.875,
+      "unusedHeight": 0,
+      "desktopTop": 646.283447265625,
+      "desktopBottom": 1363.9287109375,
+      "headlineBottom": 431.75,
+      "top": "700px",
+      "opacity": 0,
+      "transform": "translate3d(-740px, -125px, 0px) rotateX(0deg) rotateY(-34deg) rotate(0deg) scale(0.705)"
+    }
+  ],
+  "deterministicOpeningSeek": true,
+  "mobile": {
+    "x": 0,
+    "y": 75.33334350585938,
+    "width": 390,
+    "height": 693.333251953125,
+    "overflow": false
+  }
+}

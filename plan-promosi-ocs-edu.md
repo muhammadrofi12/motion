@@ -14,6 +14,10 @@ Dokumen ini berisi beberapa arah promosi lanjutan setelah showcase V2. Tiap kons
 
 **Status produksi:** animasi HTML 18 detik, 1080 × 1920, dengan musik dan tanpa tanggal rilis sudah dibuat. Buka [teaser Segera Hadir](promosi-ocs-edu-segera-hadir/index.html), [preview keyframe](promosi-ocs-edu-segera-hadir/review/contact-sheet.jpg), atau [catatan produksi](promosi-ocs-edu-segera-hadir/README.md).
 
+**Varian Paper & Print:** versi alternatif 18 detik, 1080 × 1920, memakai amplop ungu, tekstur kertas, kolase alat sekolah, tulisan tangan, dan cap “Segera hadir”. Musik instrumental dilengkapi efek kertas dan cap. Buka [animasi Paper & Print](promosi-ocs-edu-segera-hadir-v2/index.html), [preview keyframe](promosi-ocs-edu-segera-hadir-v2/review/contact-sheet.jpg), atau [catatan produksi](promosi-ocs-edu-segera-hadir-v2/README.md).
+
+**Varian V3 (Makro Simbol Berlapis + Portal Navbar Terkini):** versi 18 detik, 1080 × 1920 @ 60 FPS, dengan simbol makro 10-layer 3D glossy, cincin portal bercahaya, serta pratinjau kartu UI dengan bottom navbar mobile terbaru (Guru 4 tab dengan Kesiswaan, Siswa 4 tab, Orang Tua 3 tab). Buka [animasi V3](promosi-ocs-edu-segera-hadir-v3/index.html), [video MP4 V3](promosi-ocs-edu-segera-hadir-v3/promosi-ocs-edu-segera-hadir-v3.mp4), [preview keyframe](promosi-ocs-edu-segera-hadir-v3/review/contact-sheet.jpg), atau [catatan produksi](promosi-ocs-edu-segera-hadir-v3/README.md).
+
 **Tujuan:** membangun rasa penasaran terhadap fitur, pembaruan, atau kampanye OCS EDU yang memang akan diumumkan.
 
 **Audiens:** pimpinan sekolah dan komunitas sekolah.

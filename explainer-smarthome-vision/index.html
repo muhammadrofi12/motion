@@ -1,0 +1,222 @@
+<!doctype html><html lang="id"><!-- Adapted from bang-motion starter-explainer-kartun.html: shared world/camera, look/home/into/settle, deterministic timeline and offline player. MIT https://github.com/bangtutorial/bang-motion --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SmartHome Vision — Empat Lapisan Sistem</title><style>@font-face{font-family:Bricolage;src:url('assets/bricolage.font');font-weight:500 800;font-display:block}
+@font-face{font-family:Caveat;src:url('assets/caveat.font');font-weight:400 700;font-display:block}
+@font-face{font-family:Jakarta;src:url('assets/jakarta.font');font-weight:400 800;font-display:block}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:clip;background:#dbe5f0;color:#0f172a;font-family:Jakarta,sans-serif}body{position:fixed;inset:0}
+#stage{position:absolute;left:50%;top:50%;width:1080px;height:1920px;overflow:hidden;isolation:isolate;background:#f8fafc;transform:translate(-50%,-50%)}
+#ambient{position:absolute;inset:-300px;background:radial-gradient(ellipse at 70% 47%,#bfdbfeaa,transparent 52%),radial-gradient(ellipse at 9% 85%,#a7e9d666,transparent 50%),linear-gradient(160deg,#fffaf2,#f8fafc 45%,#e5f0ff)}
+#grid{position:absolute;inset:-500px;background-image:linear-gradient(#5780b40b 1px,transparent 1px),linear-gradient(90deg,#5780b40b 1px,transparent 1px);background-size:66px 66px;transform:rotate(-14deg);mask-image:radial-gradient(ellipse,black,transparent 65%)}
+#grain{position:absolute;inset:-40px;opacity:.035;pointer-events:none;z-index:9;mix-blend-mode:multiply}
+#film{position:absolute;inset:0;overflow:hidden}#film text{font-family:Jakarta,sans-serif}#film .layer-title text{font-family:Bricolage,sans-serif}
+#world{transform-origin:0 0;will-change:transform}.layer{will-change:transform}.layer .floor{filter:url(#softShadow)}
+#brand{position:absolute;left:78px;top:92px;display:flex;align-items:center;gap:18px;font-size:30px;font-weight:800;letter-spacing:-1px;z-index:12;color:#0f172a}
+#brand svg{width:55px;height:55px;color:#0066ff}#brand span span{font-weight:500;margin-left:6px}
+#heading{position:absolute;left:80px;top:231px;right:80px;z-index:10;pointer-events:none}
+#headline{font:650 97px/.99 Bricolage,sans-serif;letter-spacing:-4.5px;transform-origin:0 50%}#headline em{font-style:normal;color:#0066ff}#headline.compact{font-size:88px}
+#note{position:absolute;left:70px;right:70px;bottom:235px;z-index:11;font:600 43px/1.1 Caveat,cursive;text-align:center;color:#305b85}
+#status{position:absolute;left:65px;right:65px;bottom:130px;font-size:28px;font-weight:600;text-align:center;color:#425874;z-index:12}#status span{margin:0 13px;color:#0066ff}
+#outro{position:absolute;top:365px;left:100px;right:100px;text-align:center;opacity:0;z-index:13;visibility:hidden}#outro svg{width:132px;height:132px;color:#0066ff;margin-bottom:25px}#outro div{font:650 112px/.92 Bricolage,sans-serif;letter-spacing:-6px}#outro em{font-style:normal;color:#0066ff}#outro p{font:600 39px Jakarta,sans-serif;margin-top:49px;color:#24476f}
+#endnote{position:absolute;bottom:195px;left:60px;right:60px;text-align:center;font-size:30px;color:#305574;z-index:13;opacity:0}
+#dbg{display:none;position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:30;background:#10253deb;color:white;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;font:13px system-ui;max-width:98vw}#dbg input{width:260px}#dbg button{padding:8px;border:0;border-radius:6px}#dClock{white-space:nowrap;font-variant-numeric:tabular-nums}
+</style></head><body>
+<main id="stage" aria-label="Video explainer SmartHome Vision, visi sistem empat lapisan">
+ <div id="ambient"></div><div id="grid"></div><div id="grain"></div>
+ <div id="brand"><svg viewBox="0 0 100 100"><use href="#mark"/></svg><span>SmartHome<span>Vision</span></span></div>
+ <div id="heading"><div id="headline">Banyak kamera.<br><em>Banyak aplikasi?</em></div></div>
+ <svg id="film" width="1080" height="1920" viewBox="0 0 1080 1920" aria-hidden="true"><defs>
+<linearGradient id="plate" x2="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#dbeafe"/></linearGradient>
+<linearGradient id="body" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#cbd5e1"/></linearGradient>
+<linearGradient id="blue" x2=".8" y2="1"><stop stop-color="#4694ff"/><stop offset="1" stop-color="#0048cc"/></linearGradient>
+<radialGradient id="lens"><stop stop-color="#56d5f6"/><stop offset=".22" stop-color="#0b3876"/><stop offset=".65" stop-color="#0f172a"/><stop offset="1" stop-color="#334155"/></radialGradient>
+<linearGradient id="beam"><stop stop-color="#fef3c7" stop-opacity=".85"/><stop offset="1" stop-color="#fef3c7" stop-opacity="0"/></linearGradient>
+<pattern id="mesh" width="56" height="56" patternUnits="userSpaceOnUse"><path d="M56 0H0V56" fill="none" stroke="#0066ff" stroke-opacity=".055" stroke-width="1"/></pattern>
+<filter id="softShadow" x="-40%" y="-40%" width="180%" height="200%"><feDropShadow dx="0" dy="16" stdDeviation="15" flood-color="#153d6f" flood-opacity=".12"/></filter>
+<filter id="textBlur" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur id="blurAmount" stdDeviation="0 0"/></filter>
+<symbol id="cam" viewBox="-100 -130 200 270">
+ <ellipse cy="123" rx="76" ry="12" fill="#0f172a" opacity=".09"/><path d="M-49 83q49-15 98 0l13 30q-62 24-124 0Z" fill="url(#body)" stroke="#94a3b8" stroke-width="2"/>
+ <rect x="-65" y="-34" width="130" height="141" rx="55" fill="url(#body)" stroke="#b4c3d8" stroke-width="2"/><path d="M-68-41q0-82 68-82t68 82v60q-68 29-136 0Z" fill="url(#body)" stroke="#aabbd0" stroke-width="2"/>
+ <rect x="-54" y="-95" width="108" height="113" rx="48" fill="#142236"/><circle cy="-40" r="37" fill="url(#lens)" stroke="#4b657c" stroke-width="4"/><circle cx="10" cy="-52" r="8" fill="#fff" opacity=".65"/><circle cy="78" r="4" fill="#0066ff"/>
+</symbol>
+<symbol id="bullet" viewBox="-145 -90 290 220"><ellipse cy="109" rx="95" ry="12" fill="#0f172a" opacity=".09"/><path d="M61 25v51H5v25h92V15" fill="#b4c4d9" stroke="#64748b" stroke-width="5"/><path d="M-107-69 88-42 127-13 112 52-107 20Z" fill="url(#body)" stroke="#8ca4bf" stroke-width="3"/><path d="M-123-80 93-52 132-24 117-8-128-42Z" fill="#f8fafc" stroke="#94a3b8" stroke-width="3"/><ellipse cx="-107" cy="-20" rx="34" ry="49" fill="#172c43"/><ellipse cx="-111" cy="-23" rx="23" ry="32" fill="url(#lens)"/><ellipse cx="-119" cy="-35" rx="6" ry="9" fill="#bae6fd"/></symbol>
+<symbol id="motor" viewBox="-170 -100 340 210"><ellipse cy="95" rx="147" ry="12" fill="#0f172a" opacity=".1"/><g fill="#172c43" stroke="#334155" stroke-width="5"><circle cx="-101" cy="55" r="38"/><circle cx="111" cy="55" r="38"/></g><g fill="#cbd5e1"><circle cx="-101" cy="55" r="19"/><circle cx="111" cy="55" r="19"/></g><path d="M-102 43-62-7 19-5 62 40H-55Z" fill="url(#blue)" stroke="#153d6f" stroke-width="4"/><path d="M-85-17h103l15 17H-74Z" fill="#172c43"/><path d="m110 51-43-121-27-9" stroke="#526b84" stroke-width="11" fill="none" stroke-linecap="round"/><path d="m78-39 33 31-55 18-15-22Z" fill="#0066ff" stroke="#153d6f" stroke-width="4"/><path d="m87-31 16 14-26 9" stroke="#e0f2fe" stroke-width="9" fill="none"/><path d="m-51 38 35-9 29 8" stroke="#93c5fd" stroke-width="6" fill="none"/><path d="M46-75h-24" stroke="#0f172a" stroke-width="8" stroke-linecap="round"/><path d="m-135 17 34-8" stroke="#ef4444" stroke-width="7"/></symbol>
+<symbol id="car" viewBox="-180 -100 360 210"><ellipse cy="90" rx="164" ry="13" fill="#0f172a" opacity=".1"/><path d="m-141-12 44-67h140l57 55 52 11 15 69H-159l4-53Z" fill="#72a6c7" stroke="#23465e" stroke-width="4"/><path d="m-99-20 25-44h51v44Zm94 0v-44h41l40 44Z" fill="#dcefff" stroke="#345a79" stroke-width="3"/><path d="M-155 16h311" stroke="#45748e" stroke-width="4"/><g fill="#152638" stroke="#34526b" stroke-width="4"><circle cx="-98" cy="58" r="33"/><circle cx="105" cy="58" r="33"/></g><g fill="#bcd3e1"><circle cx="-98" cy="58" r="16"/><circle cx="105" cy="58" r="16"/></g><path d="M132 9h24v15h-24" fill="#fef3c7"/><path d="M-155 8h17v16h-17" fill="#ef4444"/><path d="M21-2h19" stroke="#14364e" stroke-width="5" stroke-linecap="round"/></symbol>
+<symbol id="person" viewBox="-65 -160 130 330"><ellipse cy="158" rx="50" ry="9" fill="#0f172a" opacity=".08"/><path d="m-29 58-7 83h28L7 61l14 80h27L33 54" fill="#183753"/><path d="M-37-72q37-20 74 0l19 125q-56 25-112 0Z" fill="#e7ac5f" stroke="#a66f32" stroke-width="3"/><path d="m-39-59-16 86m93-86 17 82" stroke="#bf854d" stroke-width="18" stroke-linecap="round"/><rect x="-13" y="-91" width="26" height="27" rx="9" fill="#bf854d"/><ellipse cy="-116" rx="32" ry="39" fill="#d9a578"/><path d="M-32-117q-7-50 31-48t34 42q-24-3-38-21-9 19-27 27" fill="#203343"/><path d="m-26 142-15 12H0m25-12-3 12h32" fill="none" stroke="#0f172a" stroke-width="12" stroke-linecap="round"/></symbol>
+<symbol id="parcel" viewBox="-80 -85 160 170"><path d="m-72-45 70-29 74 29v96L0 82-72 52Z" fill="#d6a56b" stroke="#9b6a36" stroke-width="3"/><path d="M-72-45 0-10 72-45M0-10v92" fill="none" stroke="#9b6a36" stroke-width="3"/><path d="m-32-63 73 35v40L22 20v-40l-72-35Z" fill="#f5d4a1"/><path d="m-57 17 31 14v23l-31-14Z" fill="#fff4df"/></symbol>
+<symbol id="chip" viewBox="-100 -100 200 200"><g stroke="#5794d9" stroke-width="8"><path d="M-60-94v32M-20-94v32M20-94v32M60-94v32M-60 94V62M-20 94V62M20 94V62M60 94V62M-94-60h32M-94-20h32M-94 20h32M-94 60h32M94-60H62M94-20H62M94 20H62M94 60H62"/></g><rect x="-72" y="-72" width="144" height="144" rx="24" fill="url(#blue)" stroke="#dbeafe" stroke-width="5"/><path d="m-35 28 17-57 17 57m-29-17h24M17-29v57M8-29h19M8 28h19" fill="none" stroke="white" stroke-width="7" stroke-linecap="round"/></symbol>
+<symbol id="db" viewBox="-130 -150 260 300"><path d="M-115-103v201c0 61 230 61 230 0v-201" fill="#a7caff" stroke="#497dc5" stroke-width="3"/><ellipse cy="-103" rx="115" ry="45" fill="#e6f1ff" stroke="#497dc5" stroke-width="3"/><path d="M-115-37c0 61 230 61 230 0M-115 31c0 61 230 61 230 0" stroke="#497dc5" stroke-width="3" fill="none"/><g fill="#fff"><circle cx="-69" cy="-13" r="7"/><circle cx="-69" cy="55" r="7"/><circle cx="-69" cy="117" r="7"/></g></symbol>
+<symbol id="shield" viewBox="-100 -120 200 240"><path d="M0-107 87-74v74q0 80-87 114Q-87 80-87 0v-74Z" fill="#0f766e" stroke="#b8efe4" stroke-width="6"/><path d="M-25-13v-20a25 25 0 0 1 50 0v20" fill="none" stroke="#e9fff7" stroke-width="10"/><rect x="-39" y="-12" width="78" height="66" rx="13" fill="#e9fff7"/><circle cy="13" r="8" fill="#0f766e"/><path d="M0 13v19" stroke="#0f766e" stroke-width="7"/></symbol>
+<symbol id="mark" viewBox="0 0 100 100"><path d="M13 43 50 13l37 30v43H13Z" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round"/><circle cx="50" cy="57" r="19" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="55" cy="52" r="5" fill="currentColor"/></symbol></defs><g id="world">
+ <g id="intro" transform="translate(540 1020)"><image href="assets/house-cutout.png" x="-475" y="-325" width="950" height="634"/>
+  <g id="introMotor"><use href="#motor" x="-120" y="148" width="240" height="150" /></g>
+  <path id="tangle" d="M-300-270C-500-150 400 290-290 490M0-300C450 60-400 190 0 510M300-270C420-100-500 340 290 490" fill="none" stroke="#7c9cc5" stroke-width="4" stroke-dasharray="9 9"/>
+  <g id="introCam1" transform="translate(-300 -330)"><use href="#cam" x="-75" y="-90" width="150" height="180" /></g><g id="introCam2" transform="translate(0 -390)"><use href="#cam" x="-75" y="-90" width="150" height="180" /></g><g id="introCam3" transform="translate(300 -330)"><use href="#bullet" x="-105" y="-126" width="210" height="252" /></g>
+  <g id="appA" transform="translate(-270 500)"><rect x="-88" y="-155" width="176" height="310" rx="26" fill="#fff" stroke="#182f4c" stroke-width="8"/><rect x="-70" y="-117" width="140" height="127" rx="12" fill="#709db8"/><path d="m-55-31 38-34 25 20 39-43" fill="none" stroke="white" stroke-width="6"/><path d="M-54 45h108M-54 72h75M-54 100h92" stroke="#c4d3e4" stroke-width="9" stroke-linecap="round"/><circle cx="58" cy="-117" r="21" fill="#ea580c"/><text x="58" y="-106" text-anchor="middle" font-size="29" fill="white" >!</text></g><g id="appB" transform="translate(0 550)"><rect x="-88" y="-155" width="176" height="310" rx="26" fill="#fff" stroke="#182f4c" stroke-width="8"/><rect x="-70" y="-117" width="140" height="127" rx="12" fill="#7d87bd"/><path d="m-55-31 38-34 25 20 39-43" fill="none" stroke="white" stroke-width="6"/><path d="M-54 45h108M-54 72h75M-54 100h92" stroke="#c4d3e4" stroke-width="9" stroke-linecap="round"/><circle cx="58" cy="-117" r="21" fill="#ea580c"/><text x="58" y="-106" text-anchor="middle" font-size="29" fill="white" >!</text></g><g id="appC" transform="translate(270 500)"><rect x="-88" y="-155" width="176" height="310" rx="26" fill="#fff" stroke="#182f4c" stroke-width="8"/><rect x="-70" y="-117" width="140" height="127" rx="12" fill="#61a8a0"/><path d="m-55-31 38-34 25 20 39-43" fill="none" stroke="white" stroke-width="6"/><path d="M-54 45h108M-54 72h75M-54 100h92" stroke="#c4d3e4" stroke-width="9" stroke-linecap="round"/><circle cx="58" cy="-117" r="21" fill="#ea580c"/><text x="58" y="-106" text-anchor="middle" font-size="29" fill="white" >!</text></g>
+ </g>
+ <g id="spines" fill="none" stroke="#72aafa" stroke-width="4"><path id="spineA"/><path id="spineB" stroke-dasharray="9 12"/></g><g id="flowDots" fill="#0066ff"><circle id="flow0" r="8"/><circle id="flow1" r="8"/><circle id="flow2" r="8"/><circle id="flow3" r="8"/><circle id="flow4" r="8"/><circle id="flow5" r="8"/><circle id="flow6" r="8"/><circle id="flow7" r="8"/><circle id="flow8" r="8"/><circle id="flow9" r="8"/><circle id="flow10" r="8"/><circle id="flow11" r="8"/></g>
+ <g id="layer1" class="layer"><g class="floor"><ellipse cy="455" rx="430" ry="88" fill="#2d6094" opacity=".055"/><path d="M-470 186 0-25 470 186v37L0 452-470 223Z" fill="#dbeafe" stroke="#aac7eb" stroke-width="2"/><path d="M-470 186 0-25 470 186 0 416Z" fill="url(#plate)" stroke="#fff" stroke-width="4"/><path d="M-406 188 0 6 407 188 0 379Z" fill="url(#mesh)" stroke="#a9c9ee" stroke-opacity=".5" stroke-width="2"/><path d="M-470 223 0 452 470 223" fill="none" stroke="#76a7df" stroke-width="3"/></g><g id="content1" class="content">
+  <g id="deviceX" transform="translate(-295 -180)"><use href="#cam" x="-94" y="-112.8" width="188" height="225.6" /></g><g id="deviceT" transform="translate(0 -230)"><use href="#cam" x="-94" y="-112.8" width="188" height="225.6" /></g><g id="deviceR" transform="translate(295 -180)"><use href="#bullet" x="-120" y="-144" width="240" height="288" /></g>
+  <text x="-295" y="13" text-anchor="middle" font-size="35" fill="#334155" >Xiaomi</text><text x="0" y="-37" text-anchor="middle" font-size="35" fill="#334155" >Tapo</text><text x="295" y="13" text-anchor="middle" font-size="35" fill="#334155" >RTSP</text>
+  <g id="ingestPipes" fill="none" stroke="#6daaff" stroke-width="7"><path d="M-295 52v58q0 45 65 45H-70M0 10v170M295 52v58q0 45-65 45H70"/></g>
+  <g id="videoPackets"><rect id="packet0" x="-16" y="-11" width="32" height="22" rx="5" fill="#0066ff" stroke="white" stroke-width="3"/><rect id="packet1" x="-16" y="-11" width="32" height="22" rx="5" fill="#0066ff" stroke="white" stroke-width="3"/><rect id="packet2" x="-16" y="-11" width="32" height="22" rx="5" fill="#0066ff" stroke="white" stroke-width="3"/><rect id="packet3" x="-16" y="-11" width="32" height="22" rx="5" fill="#0066ff" stroke="white" stroke-width="3"/><rect id="packet4" x="-16" y="-11" width="32" height="22" rx="5" fill="#0066ff" stroke="white" stroke-width="3"/><rect id="packet5" x="-16" y="-11" width="32" height="22" rx="5" fill="#0066ff" stroke="white" stroke-width="3"/><rect id="packet6" x="-16" y="-11" width="32" height="22" rx="5" fill="#0066ff" stroke="white" stroke-width="3"/><rect id="packet7" x="-16" y="-11" width="32" height="22" rx="5" fill="#0066ff" stroke="white" stroke-width="3"/><rect id="packet8" x="-16" y="-11" width="32" height="22" rx="5" fill="#0066ff" stroke="white" stroke-width="3"/></g>
+  <g id="bridge"><path d="m-172 166 174-52 170 52v91L0 309-172 257Z" fill="#daeaff" stroke="#6b98d0" stroke-width="3"/><path d="m-172 166 174-52 170 52-172 52Z" fill="#f9fcff" stroke="#9cbfe9" stroke-width="3"/><path d="M-172 166 0 218v91l-172-52Z" fill="#9dc4f6"/><g transform="translate(0 177)"><text x="0" y="0" text-anchor="middle" font-size="45" fill="#0066ff" font-weight="800">go2rtc</text></g><circle cx="47" cy="245" r="6" fill="#16a34a"/><path d="M72 238l55-17m-55 33 55-17" stroke="#5184bb" stroke-width="5"/></g>
+  <g id="freshFrame"><rect x="-230" y="338" width="460" height="76" rx="19" fill="#fff" stroke="#bdd5ef" stroke-width="2"/><text x="0" y="386" text-anchor="middle" font-size="35" fill="#285b92" >Frame terbaru → AI</text></g>
+ </g><g id="label1" class="layer-title"><rect x="-283" y="463" width="566" height="73" rx="35" fill="white" stroke="#b9d3ef" stroke-width="2"/><circle cx="-238" cy="500" r="25" fill="#0066ff"/><text x="-238" y="511" text-anchor="middle" font-size="29" fill="white" >01</text><text x="30" y="512" text-anchor="middle" font-size="31" fill="#18344f" font-weight="700">Ingestion Layer</text></g></g>
+ <g id="layer2" class="layer"><g class="floor"><ellipse cy="455" rx="430" ry="88" fill="#2d6094" opacity=".055"/><path d="M-470 186 0-25 470 186v37L0 452-470 223Z" fill="#c8e3de" stroke="#aac7eb" stroke-width="2"/><path d="M-470 186 0-25 470 186 0 416Z" fill="url(#plate)" stroke="#fff" stroke-width="4"/><path d="M-406 188 0 6 407 188 0 379Z" fill="url(#mesh)" stroke="#a9c9ee" stroke-opacity=".5" stroke-width="2"/><path d="M-470 223 0 452 470 223" fill="none" stroke="#76a7df" stroke-width="3"/></g><g id="content2" class="content">
+  <image href="assets/house-cutout.png" x="-393" y="-335" width="786" height="524"/>
+  <path id="houseZone" d="m-221 47 117-42 195 90-113 49Z" fill="#ea580c" fill-opacity=".12" stroke="#ea580c" stroke-width="6" stroke-linejoin="round"/>
+  <path id="gateZone" d="m-335 158 267-85 327 158-254 93Z" fill="#16a34a" fill-opacity=".06" stroke="#16a34a" stroke-width="6" stroke-linejoin="round"/>
+  <path id="trackPath" d="M-230 190Q-84 141 15 198T271 245" fill="none" stroke="#0066ff" stroke-width="5" stroke-dasharray="8 9"/>
+  <g id="aiMotor"><use href="#motor" x="-105" y="-65" width="210" height="130" /><g id="motorBox" class="detection"><rect x="-116" y="-78" width="236" height="151" rx="14" fill="#0066ff" fill-opacity=".035" stroke="#0066ff" stroke-width="4"/><path d="M-116 -53v-25h25M95 -78h25v25M-116 48v25h25M95 73h25v-25" fill="none" stroke="#0066ff" stroke-width="8"/></g><rect x="-116" y="-112" width="136" height="36" rx="7" fill="#0066ff"/><text x="-48" y="-85" text-anchor="middle" font-size="25" fill="white" >Motor</text></g>
+  <g id="aiCar"><use href="#car" x="-122.5" y="-75" width="245" height="150" /><g id="carBox" class="detection"><rect x="-130" y="-85" width="260" height="170" rx="14" fill="#0066ff" fill-opacity=".035" stroke="#0066ff" stroke-width="4"/><path d="M-130 -60v-25h25M105 -85h25v25M-130 60v25h25M105 85h25v-25" fill="none" stroke="#0066ff" stroke-width="8"/></g></g>
+  <g id="aiPerson"><use href="#person" x="-50" y="-125" width="100" height="250" /><g id="personBox" class="detection"><rect x="-62" y="-144" width="124" height="282" rx="14" fill="#0f766e" fill-opacity=".035" stroke="#0f766e" stroke-width="4"/><path d="M-62 -119v-25h25M37 -144h25v25M-62 113v25h25M37 138h25v-25" fill="none" stroke="#0f766e" stroke-width="8"/></g></g>
+  <g id="aiParcel"><use href="#parcel" x="-52.5" y="-55" width="105" height="110" /><g id="parcelBox" class="detection"><rect x="-64" y="-70" width="128" height="143" rx="14" fill="#ea580c" fill-opacity=".035" stroke="#ea580c" stroke-width="4"/><path d="M-64 -45v-25h25M39 -70h25v25M-64 48v25h25M39 73h25v-25" fill="none" stroke="#ea580c" stroke-width="8"/></g></g>
+  <g id="aiChip"><use href="#chip" x="-365" y="275" width="130" height="130" /><text x="0" y="365" text-anchor="middle" font-size="35" fill="#0066ff" font-weight="700">YOLO + tracking</text></g>
+  <g id="facePanel"><rect x="80" y="-358" width="300" height="275" rx="28" fill="#fff" stroke="#b7d8cc" stroke-width="3"/><circle cx="230" cy="-254" r="61" fill="#dcfce7"/><path d="M182-199q6-35 48-35t48 35" fill="#e7ac5f"/><rect x="219" y="-249" width="22" height="26" rx="8" fill="#bd8558"/><ellipse cx="230" cy="-268" rx="31" ry="39" fill="#d9a578"/><path d="M199-266q-5-48 31-48t32 41q-25-2-38-20-7 18-25 27" fill="#203343"/><circle cx="219" cy="-267" r="3" fill="#203343"/><circle cx="241" cy="-267" r="3" fill="#203343"/><path d="M221-247q9 7 18 0" stroke="#9d583c" stroke-width="3" fill="none" stroke-linecap="round"/><path id="faceScan" d="M147-294h166" stroke="#16a34a" stroke-width="4"/><path d="M153-290v-29h29M278-319h29v29M153-210v29h29M278-181h29v-29" fill="none" stroke="#16a34a" stroke-width="5"/><text x="230" y="-123" text-anchor="middle" font-size="30" fill="#166534" >Profil keluarga</text></g>
+ </g><g id="label2" class="layer-title"><rect x="-283" y="463" width="566" height="73" rx="35" fill="white" stroke="#b9d3ef" stroke-width="2"/><circle cx="-238" cy="500" r="25" fill="#0066ff"/><text x="-238" y="511" text-anchor="middle" font-size="29" fill="white" >02</text><text x="30" y="512" text-anchor="middle" font-size="31" fill="#18344f" font-weight="700">AI Vision Engine</text></g></g>
+ <g id="layer3" class="layer"><g class="floor"><ellipse cy="455" rx="430" ry="88" fill="#2d6094" opacity=".055"/><path d="M-470 186 0-25 470 186v37L0 452-470 223Z" fill="#cbdbe9" stroke="#aac7eb" stroke-width="2"/><path d="M-470 186 0-25 470 186 0 416Z" fill="url(#plate)" stroke="#fff" stroke-width="4"/><path d="M-406 188 0 6 407 188 0 379Z" fill="url(#mesh)" stroke="#a9c9ee" stroke-opacity=".5" stroke-width="2"/><path d="M-470 223 0 452 470 223" fill="none" stroke="#76a7df" stroke-width="3"/></g><g id="content3" class="content">
+  <path id="dataPipes" d="M-325 55H-80M80 55H300" fill="none" stroke="#70a8ec" stroke-width="6" stroke-dasharray="10 12"/>
+  <g id="ledger"><rect x="-420" y="-267" width="290" height="465" rx="26" fill="white" stroke="#b8cde5" stroke-width="3"/><text x="-275" y="-204" text-anchor="middle" font-size="34" fill="#18344f" font-weight="700">Event store</text>
+  <g id="event0"><rect x="-399" y="-166" width="248" height="85" rx="14" fill="#edf5ff"/><text x="-275" y="-113" text-anchor="middle" font-size="27" fill="#274462" >Motor keluar</text></g><g id="event1"><rect x="-399" y="-61" width="248" height="85" rx="14" fill="#edf9f0"/><text x="-275" y="-8" text-anchor="middle" font-size="27" fill="#274462" >Mobil tiba</text></g><g id="event2"><rect x="-399" y="44" width="248" height="85" rx="14" fill="#edf5ff"/><text x="-275" y="97" text-anchor="middle" font-size="27" fill="#274462" >Di teras</text></g></g>
+  <g id="database"><use href="#db" x="-122.5" y="-155" width="245" height="310" /><text x="0" y="216" text-anchor="middle" font-size="39" fill="#255488" font-weight="700">SQLite</text></g>
+  <g id="security"><use href="#shield" x="188" y="-179.5" width="208" height="255" /><text x="292" y="133" text-anchor="middle" font-size="32" fill="#0f766e" >Akses pemilik</text><rect x="196" y="158" width="192" height="59" rx="18" fill="white" stroke="#b4d9cf" stroke-width="2"/><text x="292" y="202" text-anchor="middle" font-size="41" fill="#0f766e" >• • • •</text></g>
+  <g id="localHost"><rect x="-233" y="272" width="466" height="127" rx="23" fill="#173c66"/><path d="M-189 314h270M-189 344H22" stroke="#5f8cba" stroke-width="9" stroke-linecap="round"/><circle cx="179" cy="334" r="12" fill="#7ce4bf"/><text x="0" y="452" text-anchor="middle" font-size="35" fill="#294e78" >Komputer lokal</text></g>
+ </g><g id="label3" class="layer-title"><rect x="-283" y="463" width="566" height="73" rx="35" fill="white" stroke="#b9d3ef" stroke-width="2"/><circle cx="-238" cy="500" r="25" fill="#0066ff"/><text x="-238" y="511" text-anchor="middle" font-size="29" fill="white" >03</text><text x="30" y="512" text-anchor="middle" font-size="31" fill="#18344f" font-weight="700">Data & Security Core</text></g></g>
+ <g id="layer4" class="layer"><g class="floor"><ellipse cy="455" rx="430" ry="88" fill="#2d6094" opacity=".055"/><path d="M-470 186 0-25 470 186v37L0 452-470 223Z" fill="#dbeafe" stroke="#aac7eb" stroke-width="2"/><path d="M-470 186 0-25 470 186 0 416Z" fill="url(#plate)" stroke="#fff" stroke-width="4"/><path d="M-406 188 0 6 407 188 0 379Z" fill="url(#mesh)" stroke="#a9c9ee" stroke-opacity=".5" stroke-width="2"/><path d="M-470 223 0 452 470 223" fill="none" stroke="#76a7df" stroke-width="3"/></g><g id="content4" class="content">
+  <g id="phone"><rect x="-287" y="-552" width="574" height="1070" rx="66" fill="#10253d" filter="url(#softShadow)"/><rect x="-271" y="-535" width="542" height="1037" rx="54" fill="#f8fafc"/><rect x="-69" y="-525" width="138" height="24" rx="12" fill="#10253d"/>
+   <text x="-1" y="-449" text-anchor="middle" font-size="36" fill="#0f172a" font-weight="800">SmartHome Vision</text><text x="-116" y="-394" text-anchor="middle" font-size="29" fill="#475569" >Pantauan rumah</text>
+   <rect x="-243" y="-365" width="486" height="304" rx="25" fill="#e4eef6"/>
+   <image href="assets/house-cutout.png" x="-231" y="-357" width="462" height="308"/>
+   <g id="uiZones"><path d="m-121-150 79-28 82 38-67 33Z" fill="#ea580c" fill-opacity=".12" stroke="#ea580c" stroke-width="5"/><path d="m-176-91 120-42 176 72" fill="none" stroke="#16a34a" stroke-width="6"/></g>
+   <rect x="-223" y="-346" width="92" height="35" rx="13" fill="#dc2626"/><text x="-177" y="-321" text-anchor="middle" font-size="22" fill="white" font-weight="700">DEMO</text>
+   <g id="uiStatus"><rect x="-243" y="-36" width="234" height="103" rx="19" fill="#ebf5ff"/><rect x="9" y="-36" width="234" height="103" rx="19" fill="#eaf8ec"/><text x="-126" y="1" text-anchor="middle" font-size="27" fill="#355779" >Kamera</text><text x="-126" y="40" text-anchor="middle" font-size="32" fill="#0066ff" font-weight="700">1 online</text><text x="126" y="1" text-anchor="middle" font-size="27" fill="#3a6750" >Kendaraan</text><text x="126" y="40" text-anchor="middle" font-size="30" fill="#15803d" font-weight="700">2 terdaftar</text></g>
+   <g id="uiPlate"><rect x="-243" y="91" width="486" height="106" rx="19" fill="#0f172a"/><text x="0" y="153" text-anchor="middle" font-size="51" fill="white" font-weight="700" letter-spacing="5">B 1234 CD</text><text x="0" y="181" text-anchor="middle" font-size="18" fill="#aabbd1" >Data demonstrasi</text></g>
+   <g id="uiTimeline"><text x="-103" y="253" text-anchor="middle" font-size="29" fill="#0f172a" font-weight="700">Aktivitas terbaru</text><circle cx="-211" cy="303" r="8" fill="#ea580c"/><path d="M-211 317v45" stroke="#d3deec" stroke-width="3"/><text x="21" y="310" text-anchor="middle" font-size="27" fill="#334155" >Motor keluar rumah</text><circle cx="-211" cy="383" r="8" fill="#16a34a"/><text x="6" y="390" text-anchor="middle" font-size="27" fill="#334155" >Mobil tiba di teras</text></g>
+   <path d="M-247 426h494" stroke="#e2e8f0" stroke-width="2"/><text x="-166" y="467" text-anchor="middle" font-size="22" fill="#0066ff" >Beranda</text><text x="0" y="467" text-anchor="middle" font-size="22" fill="#64748b" >Kendaraan</text><text x="166" y="467" text-anchor="middle" font-size="22" fill="#64748b" >Aktivitas</text>
+  </g>
+  <g id="semanticHouse"><path d="M-286-170H-412v-99" fill="none" stroke="#ea580c" stroke-width="4"/><rect x="-466" y="-350" width="250" height="91" rx="18" fill="#fff4e6" stroke="#ea580c" stroke-width="3"/><text x="-341" y="-291" text-anchor="middle" font-size="37" fill="#c2410c" font-weight="700">HOUSE</text></g>
+  <g id="semanticGate"><path d="M287-82h122v-76" fill="none" stroke="#16a34a" stroke-width="4"/><rect x="222" y="-250" width="249" height="91" rx="18" fill="#eaf8ec" stroke="#16a34a" stroke-width="3"/><text x="346" y="-192" text-anchor="middle" font-size="37" fill="#15803d" font-weight="700">GATE</text></g>
+  <g id="plateFocus"><rect x="-374" y="78" width="748" height="163" rx="30" fill="#0f172a" stroke="#71809a" stroke-width="3"/><text x="0" y="182" text-anchor="middle" font-size="82" fill="white" font-weight="700" letter-spacing="8">B 1234 CD</text></g>
+  <g id="controlPanel"><rect x="-258" y="79" width="516" height="329" rx="29" fill="#fff" stroke="#c0d5ed" stroke-width="3"/><text x="0" y="125" text-anchor="middle" font-size="30" fill="#193b62" font-weight="700">Kontrol kamera</text><circle cx="-93" cy="255" r="102" fill="#eff6ff" stroke="#b2d3fc" stroke-width="3"/><circle cx="-93" cy="255" r="39" fill="#0066ff"/>
+    <path d="m-93 170-16 23h32Zm0 170-16-23h32Zm-85-85 23-16v32Zm170 0-23-16v32Z" fill="#3673ba"/>
+    <text x="-93" y="267" text-anchor="middle" font-size="37" fill="white" >⌂</text><rect x="66" y="183" width="151" height="64" rx="26" fill="#e2e8f0" id="lampToggle"/><circle id="lampKnob" cx="100" cy="215" r="24" fill="white"/><text x="140" y="283" text-anchor="middle" font-size="30" fill="#385572" >Lampu</text><text x="0" y="377" text-anchor="middle" font-size="27" fill="#475569" >Posisi jaga</text>
+  </g>
+  <g id="controlCam"><use href="#cam" x="240" y="-344" width="230" height="300" /></g><path id="lightBeam" d="M348-242 440 164 72 120Z" fill="url(#beam)"/>
+  <g id="touch"><circle r="42" fill="#0066ff" fill-opacity=".14" stroke="#0066ff" stroke-width="3"/><circle r="11" fill="#0066ff"/></g>
+ </g><g id="label4" class="layer-title"><rect x="-283" y="463" width="566" height="73" rx="35" fill="white" stroke="#b9d3ef" stroke-width="2"/><circle cx="-238" cy="500" r="25" fill="#0066ff"/><text x="-238" y="511" text-anchor="middle" font-size="29" fill="white" >04</text><text x="30" y="512" text-anchor="middle" font-size="31" fill="#18344f" font-weight="700">Presentation Layer</text></g></g>
+ </g></svg>
+ <div id="note">Ilustrasi sistem</div><div id="status">Visi pengembangan <span>•</span> Prototipe pribadi</div>
+ <div id="outro"><svg viewBox="0 0 100 100"><use href="#mark"/></svg><div>SmartHome<br><em>Vision</em></div><p>Cek SmartHome Vision</p></div>
+ <div id="endnote">Pengujian dan pengembangan berlanjut</div>
+</main><audio id="vo" src="assets/soundtrack.wav" preload="auto"></audio>
+<div id="dbg"><button id="dPlay">Putar / jeda</button><button id="dRestart">Ulang</button><input id="dScrub" aria-label="Waktu video" type="range" min="0" max="78.73140625" step=".01"><span id="dClock"></span></div>
+<script src="assets/gsap.min.js"></script><script>(()=>{'use strict';
+// The shared camera rig comes from bang-motion's cartoon-collage explainer starter.
+// Everything on screen is a pure function of timeline time; audio is the live master clock.
+const W=1080,H=1920,DURATION=78.73140625,$=id=>document.getElementById(id);
+const clamp=v=>Math.max(0,Math.min(1,v)),p=(t,a,b)=>clamp((t-a)/(b-a)),ease=v=>v*v*(3-2*v),out=v=>1-(1-v)**3,mix=(a,b,v)=>a+(b-a)*v;
+const S=(t,a,b)=>ease(p(t,a,b)),E=(t,a,b)=>out(p(t,a,b)),visible=(t,a,b)=>E(t,a,a+.6)*(1-S(t,b-.35,b));
+const cache={},node=id=>cache[id]||(cache[id]=$(id));
+function pose(id,x=0,y=0,s=1,r=0,o=1){const n=node(id);n.setAttribute('transform',`translate(${x.toFixed(3)} ${y.toFixed(3)}) rotate(${r.toFixed(3)}) scale(${s.toFixed(5)})`);n.setAttribute('opacity',o.toFixed(5));n.style.visibility=o>.00001?'visible':'hidden'}
+function alpha(id,o){const n=node(id);n.setAttribute('opacity',o.toFixed(5));n.style.visibility=o>.00001?'visible':'hidden'}
+const C={x:540,y:960,z:1},rig=$('world');
+function applyCam(){rig.setAttribute('transform',`translate(${(W/2-C.x*C.z).toFixed(4)} ${(H/2-C.y*C.z).toFixed(4)}) scale(${C.z.toFixed(6)})`)}
+// look/home/into/settle are expressed as deterministic interpolations so direct seeking is exact.
+function look(a,b,v){return{x:mix(a.x,b.x,v),y:mix(a.y,b.y,v),z:mix(a.z,b.z,v)}}
+const headings=[
+ [0,7.05,'Banyak kamera.<br><em>Banyak aplikasi?</em>','Ilustrasi sistem'],
+ [7.05,10.4,'Satu rumah.<br><em>Satu sistem.</em>','SmartHome Vision'],
+ [10.4,15.38,'Empat lapisan.<br><em>Saling terhubung.</em>','Dari video menjadi informasi'],
+ [15.38,24.39,'Ingestion<br><em>Layer</em>','Target integrasi • sesuai kompatibilitas'],
+ [24.39,37.45,'AI Vision<br><em>Engine</em>','Deteksi → lintasan → informasi'],
+ [37.45,46.56,'Data &amp;<br><em>Security Core</em>','Penyimpanan lokal • akses pemilik'],
+ [46.56,50.95,'Presentation<br><em>Layer</em>','Antarmuka dengan data demonstrasi'],
+ [50.95,54.41,'Area privat.<br><em>Batas yang jelas.</em>','Oranye • pintu rumah / HOUSE'],
+ [54.41,58.17,'Pantau akses<br><em>di gerbang.</em>','Hijau • batas gerbang / GATE'],
+ [58.17,64.01,'Informasi penting.<br><em>Terbaca jelas.</em>','Hitam arang • plat kendaraan'],
+ [64.01,72.15,'Kendali dari<br><em>genggaman.</em>','Target kontrol • perangkat kompatibel'],
+ [72.15,76.7,'Satu sistem.<br><em>Semua terhubung.</em>','Visi SmartHome Vision'],
+ [76.7,DURATION,'','']
+];let headingIndex=-1;
+const grain=document.createElement('canvas');grain.width=grain.height=192;const gc=grain.getContext('2d'),gd=gc.createImageData(192,192);let seed=10242026;for(let i=0;i<192*192;i++){seed=(Math.imul(seed,1664525)+1013904223)>>>0;const v=seed>>>24;gd.data[i*4]=gd.data[i*4+1]=gd.data[i*4+2]=v;gd.data[i*4+3]=255}gc.putImageData(gd,0,0);$('grain').style.backgroundImage=`url(${grain.toDataURL()})`;
+function render(t){
+ const reveal=S(t,7,10.1),spread=S(t,14.9,16.5),collapse=S(t,72.15,73.6),q=spread*(1-collapse);
+ const ys=[1320+6000*q,1070+4200*q,820+2400*q,570+600*q];
+ // Start at the home, reveal the stack, then physically travel between its four levels.
+ let cam=look({x:540,y:1090,z:1},{x:540,y:1065,z:1.01},reveal);
+ cam=look(cam,{x:540,y:ys[0]+80,z:1},spread);
+ cam=look(cam,{x:540,y:ys[1]+80,z:1.03},S(t,23.95,25.25));
+ cam=look(cam,{x:540,y:ys[2]+100,z:1.02},S(t,37.02,38.15));
+ cam=look(cam,{x:540,y:ys[3]+25,z:1.03},S(t,46.08,47.25));
+ const uiFocus=S(t,50.6,51.6)*(1-S(t,63.7,64.7));cam.x+=mix(35,-35,S(t,54,55))*uiFocus;cam.z+=.035*uiFocus;
+ cam=look(cam,{x:540,y:1090,z:.97},collapse);
+ const finish=S(t,75.7,77.25);cam=look(cam,{x:540,y:690,z:.70},finish);
+ C.x=cam.x+3*Math.sin(t*.43);C.y=cam.y+4*Math.sin(t*.35);C.z=cam.z;applyCam();
+ $('ambient').style.transform=`translate(${(22*Math.sin(t*.09)).toFixed(3)}px,${(17*Math.cos(t*.1)).toFixed(3)}px)`;
+ $('grid').style.transform=`translate(${(8*Math.sin(t*.1)).toFixed(3)}px,${(8*Math.cos(t*.13)).toFixed(3)}px) rotate(-14deg)`;
+ $('grain').style.transform=`translate(${(3*Math.sin(t*.4)).toFixed(3)}px,${(3*Math.cos(t*.3)).toFixed(3)}px)`;
+ const introExit=E(t,7,9.2);pose('intro',540,1020-introExit*240,mix(1,.32,introExit),-4*introExit,1-introExit);
+ pose('introMotor',mix(-165,125,S(t,.5,6.2)),0,1,0,1);
+ ['introCam1','introCam2','introCam3'].forEach((id,i)=>pose(id,[-300,0,300][i],[-330,-390,-330][i]+Math.sin(t*1.3+i)*9,1,Math.sin(t*.7+i)*3,E(t,i*.2,.8+i*.2)));
+ ['appA','appB','appC'].forEach((id,i)=>pose(id,[-270,0,270][i], [500,550,500][i]+Math.sin(t*1.9+i*2)*8,1,Math.sin(t*1.1+i)*3,E(t,1.3+i*.35,2+i*.35)));
+ $('tangle').style.strokeDashoffset=(-t*25).toFixed(3);
+ for(let i=0;i<4;i++){
+  const bob=Math.sin(t*.9+i)*4*(1-q);pose('layer'+(i+1),540,ys[i]+bob,mix(.86,1,q),0,E(t,7.45+i*.18,8.4+i*.18));
+  const contentScale=mix(.36,1,q);pose('content'+(i+1),0,mix(140,0,q),contentScale,0,1);
+  pose('label'+(i+1),0,mix(-52,0,q),mix(.89,1,q),0,(1-q)*(1-finish));
+ }
+ // Two visibly connected data trunks bind the exploded levels into one physical system.
+ $('spineA').setAttribute('d',`M175 ${ys[0]+160}C80 ${ys[0]+30} 80 ${ys[3]+140} 175 ${ys[3]+30}`);
+ $('spineB').setAttribute('d',`M905 ${ys[0]+160}C1000 ${ys[0]+30} 1000 ${ys[3]+140} 905 ${ys[3]+30}`);
+ alpha('spines',reveal*(1-finish)*.6);alpha('flowDots',reveal*(1-finish));
+ for(let i=0;i<12;i++){const k=(t*.17+i/12)%1;pose('flow'+i,i%2?944:136,mix(ys[0]+150,ys[3]+60,k),.7+Math.sin(k*Math.PI)*.4,0,1)}
+ // Ingestion: packets come from three devices and merge into the bridge.
+ ['deviceX','deviceT','deviceR'].forEach((id,i)=>pose(id,[-295,0,295][i],[-180,-230,-180][i]+Math.sin(t*1.2+i)*5,1,Math.sin(t*.65+i)*2,1));
+ for(let i=0;i<9;i++){const lane=i%3,k=(t*.6+Math.floor(i/3)/3)%1;pose('packet'+i,mix([-295,0,295][lane],0,k),mix([53,10,53][lane],186,k),mix(1,.65,k),0,.9)}
+ pose('bridge',0,Math.sin(t*.9)*3,1);pose('freshFrame',0,0,1,0,.72+.28*Math.sin(t*2)**2);
+ // AI: the house remains the world; detections build in the order spoken in the VO.
+ const aiTime=Math.max(0,t-29.05),mv=S(aiTime,0,7);pose('aiMotor',mix(-185,220,mv),mix(185,243,mv),1,0,1);
+ pose('aiCar',120,43,1,0,E(t,29.05,29.7));pose('aiPerson',-248,21,1,0,E(t,30.1,30.65));pose('aiParcel',285,138,1,0,E(t,30.65,31.2));
+ alpha('houseZone',E(t,32.15,32.7));alpha('gateZone',E(t,32.45,33));alpha('trackPath',E(t,32.6,33.2));$('trackPath').style.strokeDashoffset=(-t*22).toFixed(3);
+ const face=E(t,34.4,35.1);pose('facePanel',50*(1-face),-30*(1-face),mix(.82,1,face),0,face);
+ $('faceScan').setAttribute('transform',`translate(0 ${(48+38*Math.sin(t*2)).toFixed(3)})`);pose('aiChip',0,0,1,Math.sin(t*.65)*2);
+ // Backend: event cards write one at a time into a local database, next to owner access.
+ for(let i=0;i<3;i++)pose('event'+i,-30*(1-E(t,39+i*.65,39.6+i*.65)),0,1,0,E(t,39+i*.65,39.6+i*.65));
+ pose('database',0,Math.sin(t)*4,1);pose('security',0,Math.sin(t*.85+1)*5,1,Math.sin(t*.8)*2);$('dataPipes').style.strokeDashoffset=(-t*26).toFixed(3);
+ // Presentation: the same phone reveals zone semantics and then its hardware controls.
+ const control=E(t,64.01,64.9)*(1-S(t,71.8,72.6));const phoneScale=mix(.88,.78,control);
+ pose('phone',-82*control,mix(65,15,control),phoneScale,-3*control,1);
+ alpha('uiZones',E(t,50.65,51.2));alpha('semanticHouse',visible(t,50.95,54.4));alpha('semanticGate',visible(t,54.41,58.1));
+ const plate=visible(t,58.17,63.9);pose('plateFocus',0,0,mix(.65,1,plate),-2*plate,plate);
+ alpha('uiTimeline',1-control);alpha('uiPlate',1-control);alpha('uiStatus',1-control*.6);
+ pose('controlPanel',-65,0,.91,0,control);pose('controlCam',0,0,1,Math.sin((t-64)*1.6)*12*visible(t,65,70.4),control);
+ const lamp=S(t,67.45,67.8)*(1-S(t,71.7,72.1));$('lampToggle').setAttribute('fill',lamp>.5?'#16a34a':'#e2e8f0');$('lampKnob').setAttribute('cx',mix(100,182,lamp).toFixed(3));alpha('lightBeam',lamp*control*.7);
+ const touch=visible(t,64.9,68.45);pose('touch',mix(-70,64,S(t,66.8,67.4)),mix(232,196,S(t,66.8,67.4)),.8+.14*Math.sin(t*9),0,touch);
+ // Type lives in screen space; it never shrinks into the overview diagrams.
+ const idx=headings.findIndex(h=>t>=h[0]&&t<h[1]);const h=headings[Math.max(0,idx)];
+ if(headingIndex!==idx){$('headline').innerHTML=h[2];$('headline').className=idx===9?'compact':'';headingIndex=idx}
+ let note=h[3];if(t>=30.1&&t<37.45)note='Orang, paket & wajah • target pengembangan';
+ $('note').textContent=note;
+ const hin=E(t,h[0],h[0]+.65),hout=S(t,h[1]-.3,h[1]);const ho=hin*(1-hout)*(1-finish);
+ $('heading').style.opacity=ho.toFixed(5);$('headline').style.transform=`translateY(${(34*(1-hin)-23*hout).toFixed(3)}px)`;
+ const blur=Math.max(1-hin,hout)*9;$('blurAmount').setAttribute('stdDeviation',`0 ${blur.toFixed(3)}`);$('headline').style.filter=blur>.05?'url(#textBlur)':'none';
+ $('note').style.opacity=(E(t,h[0]+.4,h[0]+.9)*(1-hout)*(1-finish)).toFixed(5);
+ $('status').style.opacity=E(t,7.05,8).toFixed(5);
+ const outro=E(t,76.4,77.4);$('outro').style.opacity=outro.toFixed(5);$('outro').style.visibility=outro>.001?'visible':'hidden';$('outro').style.transform=`translateY(${(50*(1-outro)).toFixed(3)}px)`;
+ $('endnote').style.opacity=E(t,74.5,76).toFixed(5);
+ $('dScrub').value=t.toFixed(3);$('dClock').textContent=t.toFixed(2)+' / '+DURATION.toFixed(2);
+}
+const vo=$('vo'),state={time:0},intent={playing:false};let pending=null;
+const tl=gsap.timeline({paused:true,onUpdate(){if(intent.playing&&!vo.paused&&Math.abs(state.time-vo.currentTime)>.04)tl.time(Math.min(DURATION,vo.currentTime),true);render(state.time)},onComplete(){if(intent.playing){vo.currentTime=0;tl.play(0);vo.play().catch(pause)}}});tl.to(state,{time:DURATION,duration:DURATION,ease:'none'});
+function pause(){intent.playing=false;tl.pause();vo.pause()}
+function seek(time){pause();const t=Math.max(0,Math.min(DURATION,Number(time)||0));tl.time(t,false);render(t);if(Number.isFinite(vo.duration))vo.currentTime=Math.min(t,vo.duration)}
+async function play(){if(pending)return pending;pending=(async()=>{if(state.time>=DURATION-.01){tl.time(0);vo.currentTime=0}intent.playing=true;vo.currentTime=state.time;try{await vo.play();if(intent.playing)tl.play();else vo.pause();return intent.playing}catch{pause();return false}})();try{return await pending}finally{pending=null}}
+async function restart(){seek(0);return play()}
+function fit(){$('stage').style.transform=`translate(-50%,-50%) scale(${Math.min(innerWidth/W,innerHeight/H)})`}addEventListener('resize',fit);fit();
+$('stage').addEventListener('click',()=>intent.playing?pause():play());$('dPlay').onclick=()=>intent.playing?pause():play();$('dRestart').onclick=restart;$('dScrub').addEventListener('input',e=>seek(e.target.value));
+document.addEventListener('keydown',e=>{if(e.target instanceof HTMLInputElement)return;if(e.code==='Space'){e.preventDefault();intent.playing?pause():play()}if(e.code==='KeyR')restart()});
+const params=new URLSearchParams(location.search);if(params.has('debug'))$('dbg').style.display='flex';
+window.OPENER={W,H,DURATION,tl,seek,seekFrame:async t=>{seek(t);await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))},play,pause,restart,ready:false,render};render(0);
+const soundReady=new Promise((resolve,reject)=>{if(vo.readyState>=1)return resolve();vo.addEventListener('loadedmetadata',resolve,{once:true});vo.addEventListener('error',()=>reject(Error('Soundtrack tidak dapat dimuat')),{once:true})});
+const house=new Image();house.src='assets/house-cutout.png';
+Promise.all([document.fonts.ready,house.decode(),soundReady]).then(()=>{render(0);window.OPENER.ready=true;if(!params.has('clean')&&!params.has('debug'))play()}).catch(e=>{window.OPENER.error=e.message;console.error(e)});
+})();
+</script></body></html>

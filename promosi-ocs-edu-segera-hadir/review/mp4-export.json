@@ -1,0 +1,23 @@
+{
+  "sourceSHA256": "836bbfecdf58c983634325549b083de8e4be2af99b2c5482603545c3855f0be4",
+  "fps": 60,
+  "width": 1440,
+  "height": 2560,
+  "cssWidth": 1080,
+  "cssHeight": 1920,
+  "scale": 1.3333333333333333,
+  "duration": 18,
+  "total": 1080,
+  "format": "JPEG",
+  "quality": 98,
+  "completed": 1080,
+  "elapsedSeconds": 73.1340395,
+  "videoCodec": "H.264 High (libx264)",
+  "crf": 16,
+  "bitrate": "CRF 16",
+  "audioCodec": "AAC",
+  "audioBitrate": "320k",
+  "audioSampleRate": 48000,
+  "encodeSeconds": 109.0476995,
+  "output": "C:\\Belajar_Pemograman\\Project\\motion\\promosi-ocs-edu-segera-hadir\\promosi-ocs-edu-segera-hadir-2k.mp4"
+}

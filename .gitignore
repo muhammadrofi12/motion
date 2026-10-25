@@ -8,7 +8,9 @@ node_modules/
 # Temporary render frames & cache
 .render/
 **/.render/
-encoding.mp4
+.render-2k/
+**/.render-2k/
+encoding*.mp4
 
 # Logs
 *.log
@@ -24,3 +26,4 @@ Desktop.ini
 # Editor & IDE configs
 .vscode/
 .idea/
+*.mp4

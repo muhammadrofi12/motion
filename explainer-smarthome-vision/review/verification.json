@@ -1,0 +1,223 @@
+{
+  "status": "passed",
+  "info": {
+    "duration": 78.73140625,
+    "timeline": 78.7314063,
+    "audio": 78.731406,
+    "fonts": [
+      true,
+      true,
+      true
+    ],
+    "debug": "none"
+  },
+  "keyframes": [
+    1.4,
+    4.5,
+    8.7,
+    12.4,
+    17.7,
+    22.5,
+    27.5,
+    30.8,
+    34.8,
+    40.5,
+    44.7,
+    48.7,
+    52.5,
+    56,
+    61,
+    65.8,
+    68.6,
+    70.6,
+    74.6,
+    78
+  ],
+  "bounds": [
+    {
+      "t": 1.4,
+      "text": "Banyak kamera.\nBanyak aplikasi?",
+      "left": 40,
+      "right": 403.3046875,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 4.5,
+      "text": "Banyak kamera.\nBanyak aplikasi?",
+      "left": 40,
+      "right": 403.3046875,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 8.7,
+      "text": "Satu rumah.\nSatu sistem.",
+      "left": 40,
+      "right": 309.2421875,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 12.4,
+      "text": "Empat lapisan.\nSaling terhubung.",
+      "left": 40,
+      "right": 428.796875,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 17.7,
+      "text": "Ingestion\nLayer",
+      "left": 40,
+      "right": 244.3125,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 22.5,
+      "text": "Ingestion\nLayer",
+      "left": 40,
+      "right": 244.3125,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 27.5,
+      "text": "AI Vision\nEngine",
+      "left": 40,
+      "right": 228.203125,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 30.8,
+      "text": "AI Vision\nEngine",
+      "left": 40,
+      "right": 228.203125,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 34.8,
+      "text": "AI Vision\nEngine",
+      "left": 40,
+      "right": 228.203125,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 40.5,
+      "text": "Data &\nSecurity Core",
+      "left": 40,
+      "right": 338.375,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 44.7,
+      "text": "Data &\nSecurity Core",
+      "left": 40,
+      "right": 338.375,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 48.7,
+      "text": "Presentation\nLayer",
+      "left": 40,
+      "right": 324.2265625,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 52.5,
+      "text": "Area privat.\nBatas yang jelas.",
+      "left": 40,
+      "right": 404.3515625,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 56,
+      "text": "Pantau akses\ndi gerbang.",
+      "left": 40,
+      "right": 334.703125,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 61,
+      "text": "Informasi penting.\nTerbaca jelas.",
+      "left": 40,
+      "right": 400.6484375,
+      "top": 110.5,
+      "bottom": 207.0546875
+    },
+    {
+      "t": 65.8,
+      "text": "Kendali dari\ngenggaman.",
+      "left": 40,
+      "right": 312.625,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 68.6,
+      "text": "Kendali dari\ngenggaman.",
+      "left": 40,
+      "right": 312.625,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 70.6,
+      "text": "Kendali dari\ngenggaman.",
+      "left": 40,
+      "right": 312.625,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 74.6,
+      "text": "Satu sistem.\nSemua terhubung.",
+      "left": 40,
+      "right": 448.75,
+      "top": 110.5,
+      "bottom": 216.5078125
+    },
+    {
+      "t": 78,
+      "text": "",
+      "left": 0,
+      "right": 0,
+      "top": 0,
+      "bottom": 0
+    }
+  ],
+  "deterministicSeek": {
+    "maxDelta": 0
+  },
+  "mobile": {
+    "left": 0,
+    "right": 390,
+    "top": 75.33334350585938,
+    "bottom": 768.6665954589844,
+    "overflow": false
+  },
+  "playback": {
+    "t": 26.054057,
+    "audio": 26.064019,
+    "paused": false
+  },
+  "loop": {
+    "t": 0.586917,
+    "audio": 0.57088,
+    "paused": false
+  },
+  "offline": true,
+  "autoplayGate": true,
+  "mediaAborts": 1,
+  "errors": [],
+  "failed": []
+}

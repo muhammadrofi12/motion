@@ -1,0 +1,24 @@
+{
+  "fonts": [
+    {
+      "name": "bricolage",
+      "cssURL": "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=block",
+      "url": "https://fonts.gstatic.com/s/bricolagegrotesque/v9/3y9U6as8bTXq_nANBjzKo3IeZx8z6up5BeSl5jBNz_19PpbpMXuECpwUxJBOm_OJWiaaD30YfKfjZZoLvZvlyM0.ttf",
+      "licenseURL": "https://raw.githubusercontent.com/google/fonts/main/ofl/bricolagegrotesque/OFL.txt"
+    },
+    {
+      "name": "caveat",
+      "cssURL": "https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=block",
+      "url": "https://fonts.gstatic.com/s/caveat/v23/WnznHAc5bAfYB2QRah7pcpNvOx-pjRV6SII.ttf",
+      "licenseURL": "https://raw.githubusercontent.com/google/fonts/main/ofl/caveat/OFL.txt"
+    },
+    {
+      "name": "jakarta",
+      "cssURL": "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&display=block",
+      "url": "https://fonts.gstatic.com/s/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_KUnNSg.ttf",
+      "licenseURL": "https://raw.githubusercontent.com/google/fonts/main/ofl/plusjakartasans/OFL.txt"
+    }
+  ],
+  "gsapURL": "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js",
+  "house": "Generated using the built-in imagegen tool; see image-prompt.md"
+}

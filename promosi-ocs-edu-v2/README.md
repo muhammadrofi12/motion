@@ -7,7 +7,8 @@ Buka **index.html** dengan Chrome atau Edge. Semua aset lokal; tidak perlu menja
 - Jika browser memblokir autoplay bersuara, klik sekali pada video untuk mulai.
 - Spasi: putar/jeda. R: ulang. Video mengulang otomatis.
 - Review dengan `index.html?debug=1`; tampilan bersih yang berhenti di awal dengan `index.html?clean=1`.
-- Video MP4 hasil render tersedia di `promosi-ocs-edu-v2.mp4` (1080 × 1920, 60 FPS, H.264 + AAC 48 kHz).
+- Video MP4 hasil render tersedia di `promosi-ocs-edu-v2-2k.mp4` (1440 × 2560 2K QHD, 60 FPS, H.264 High CRF 16 + AAC 48 kHz).
+- Untuk render ulang video: `node scripts/render-video.mjs`.
 - Review animasi HTML dapat dibuka langsung via `index.html?debug=1`.
 
 ## Konsep

@@ -1,0 +1,135 @@
+{
+  "status": "passed",
+  "info": {
+    "duration": 18,
+    "audio": 18,
+    "fonts": [
+      true,
+      true,
+      true
+    ],
+    "images": true,
+    "debug": "none"
+  },
+  "keyframes": [
+    0,
+    0.7,
+    1.7,
+    3.35,
+    4.8,
+    6.3,
+    7.9,
+    9.5,
+    10.9,
+    11.55,
+    11.9,
+    12.8,
+    14.3,
+    15.6,
+    16.6,
+    17.55
+  ],
+  "bounds": [
+    {
+      "time": 1.7,
+      "items": [
+        {
+          "selector": "#hook",
+          "text": "Ada kabarbaru",
+          "left": 77.79640197753906,
+          "right": 639.0243072509766,
+          "top": 214.26358032226562,
+          "bottom": 526.1720581054688
+        }
+      ]
+    },
+    {
+      "time": 6.3,
+      "items": [
+        {
+          "selector": "#recipient-note p",
+          "text": "Untuk sekolahmu",
+          "left": 340.1084899902344,
+          "right": 745.7238159179688,
+          "top": 617.4765625,
+          "bottom": 752.6814575195312
+        }
+      ]
+    },
+    {
+      "time": 16.6,
+      "items": [
+        {
+          "selector": ".wordmark",
+          "text": "OCS EDU",
+          "left": 420.0198974609375,
+          "right": 632.2861328125,
+          "top": 619.3447875976562,
+          "bottom": 690.5604858398438
+        },
+        {
+          "selector": "#stamp-ink span",
+          "text": "Segera",
+          "left": 355.8311462402344,
+          "right": 707.99462890625,
+          "top": 902.9682006835938,
+          "bottom": 1074.8582763671875
+        },
+        {
+          "selector": "#stamp-ink span",
+          "text": "hadir",
+          "left": 403.5033874511719,
+          "right": 687.7623291015625,
+          "top": 1018.8775024414062,
+          "bottom": 1182.429931640625
+        },
+        {
+          "selector": "#cta-text",
+          "text": "Ikuti kabar terbaru",
+          "left": 384.2197265625,
+          "right": 716.3770751953125,
+          "top": 1310.5782470703125,
+          "bottom": 1399.110595703125
+        },
+        {
+          "selector": "#recipient-note p",
+          "text": "Untuk sekolahmu",
+          "left": 358.6045227050781,
+          "right": 713.80078125,
+          "top": 752.8250732421875,
+          "bottom": 854.0857543945312
+        }
+      ]
+    }
+  ],
+  "stamp": {
+    "soundAt": 11.55,
+    "inkAppearsAt": 11.55
+  },
+  "deterministicSeek": {
+    "identicalStyles": true,
+    "maxDelta": 0
+  },
+  "mobile": {
+    "left": 0,
+    "right": 390,
+    "top": 75.33334350585938,
+    "bottom": 768.6665954589844,
+    "overflow": false
+  },
+  "playback": {
+    "t": 11.497202,
+    "audio": 11.505349,
+    "paused": false
+  },
+  "loop": {
+    "t": 0.226028,
+    "audio": 0.272588,
+    "paused": false
+  },
+  "offline": true,
+  "autoplayGate": true,
+  "mediaAborts": 2,
+  "errors": [],
+  "failed": []
+}

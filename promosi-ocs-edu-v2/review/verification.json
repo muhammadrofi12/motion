@@ -201,14 +201,14 @@
     "overflow": false
   },
   "playing": {
-    "t": 1.007,
-    "audio": 0.971051,
+    "t": 1.016,
+    "audio": 0.975931,
     "paused": false,
     "audioPaused": false
   },
   "loop": {
-    "t": 0.441,
-    "audio": 0.400437,
+    "t": 0.45,
+    "audio": 0.415009,
     "paused": false
   },
   "deterministicSeek": {
